@@ -1,0 +1,15 @@
+<div class="card-body">  
+  <div class="row">
+    <div class="col-md-2 criteria-icon">
+      {{priu-icon name=leftIcon}}
+    </div>
+    <div class="col-md">
+      <p class="h5 mb-3">{{text}}</p>
+      <input id="slider" type="text" data-slider-min="1" data-slider-max="9"
+        data-slider-step="1" data-slider-value="{{value}}" change="(action changeValue)"/>
+    </div>
+    <div class="col-md-2 criteria-icon">
+      {{priu-icon name=rightIcon}}
+    </div>
+  </div>          
+</div>

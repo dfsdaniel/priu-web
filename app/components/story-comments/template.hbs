@@ -1,11 +1,19 @@
 <h5>Comentários</h5>
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
+    {{#if comments}}
+      <ul>
+      {{#each comments as |cm|}}
+        <li>
+          {{cm.content}}<br />
+          {{cm.dateTime}}<br />
+          <small>{{moment-from-now cm.dateTime}}</small>
+        </li>
+      {{/each}}
+      </ul>
+    {{else}}
+      Seja o primeiro a comentar e ganhe pontos!
+    {{/if}}
   </div>
 </div>
-<textarea class="form-control" rows="3" placeholder="Digite aqui seu comentário"></textarea>
+<textarea class="form-control mt-2" rows="3" placeholder="Digite aqui seu comentário"></textarea>

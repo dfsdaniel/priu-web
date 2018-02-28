@@ -1,38 +1,26 @@
 <div class="row">
   <div class="col-md-2 text-center">
     {{user-ranking}}
-    <button type="button" class="btn btn-primary">Próxima estória</button>
+    <button type="button" class="btn btn-primary mt-2">Próxima estória</button>
   </div>
   
   <div class="col-md text-center">
-    <h1 class="text-primary">Como usuário eu quero cadastrar filme no sistema</h1>
-    <textarea class="form-control" rows="10">Esta é a descrição completa da estória</textarea>
+    <h1 class="text-primary">{{model.title}}</h1>
+    <textarea class="form-control" rows="5">{{model.description}}</textarea>
 
     <div class="story-button-options mt-2" role="group">
       <button type="button" class="btn btn-secondary">Mais detalhes</button>
       <button type="button" class="btn btn-secondary">Critérios de aceitação</button>
       <button type="button" class="btn btn-secondary">Wireframes</button>
     </div>
+    
+    {{story-criteria text="É muito importante para a sprint?" value=model.benefit}}
+    {{story-criteria text="Vai fazer muita falta se não existir?" value=model.penalty invertIcons=true}}
 
-    <div class="story-criteria card mt-2">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-2">
-            {{priu-icon name="user-dislike"}}
-          </div>
-          <div class="col-md">
-            <input id="ex8" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20"
-            	data-slider-step="1" data-slider-value="14"/>
-          </div>
-          <div class="col-md-2">
-            {{priu-icon name="user-like"}}
-          </div>
-        </div>          
-      </div>
-    </div>      
+    <button type="button" class="btn btn-primary mt-2">Salvar</button>
   </div>
   
   <div class="col-md-3">
-    {{story-comments}}
+    {{story-comments story=model saveComment=(action "saveComment")}}
   </div>
 </div>

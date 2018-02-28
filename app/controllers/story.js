@@ -1,11 +1,15 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import moment from 'moment';
 
-export default Ember.Controller.extend({
-  init() {
-  	Ember.run.scheduleOnce('afterRender', this, function() {
-  		$("#ex8").slider({
-  			tooltip: 'always'
-      });
-		});  	
-  }
+export default Controller.extend({  
+	actions: {
+		saveComment(comment) {
+			const story = this.get('model');
+			story.get('comments').pushObject(this.store.createRecord('story-comment', {
+				story: story,
+				content: comment,
+				dateTime: moment()
+			}));
+		}
+	}
 });

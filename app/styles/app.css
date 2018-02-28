@@ -1,3 +1,4 @@
+/* STORY */
 .story-button-options {	
 	display: flex;	
 	justify-content: space-between;
@@ -7,6 +8,16 @@
 	width: 32%;
 }
 
+/* USER-INFO */
+
+.user-info {
+	display: flex;
+	align-items: center;
+}
+.user-info .priu-icon {
+	width: 30px;
+	height: 30px;
+}
 
 /* USER-RANKING */
 
@@ -30,10 +41,19 @@
 	fill: #dc3545;
 }
 
-.story-criteria {
-
+.slider.slider-horizontal {
+	width: 90%;
 }
 
-.slider.slider-horizontal {
-	width: 100%;
+/* STORY-CRITERIA */
+
+.story-criteria .criteria-icon {
+	display: flex;
+	align-items: center;
+}
+
+/* STORY-COMMENTS */
+.story-comments .card {
+	height: 433px;
+	overflow: scroll;
 }
