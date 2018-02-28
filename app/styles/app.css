@@ -1,0 +1,39 @@
+.story-button-options {	
+	display: flex;	
+	justify-content: space-between;
+}
+
+.story-button-options .btn {
+	width: 32%;
+}
+
+
+/* USER-RANKING */
+
+.user-ranking .card-body {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+/* PRIU-ICON */
+.priu-icon{
+	width: 60px; 
+	height: 60px;
+}
+
+.priu-icon svg.user-like {
+	fill: #28a745;
+}
+
+.priu-icon svg.user-dislike {
+	fill: #dc3545;
+}
+
+.story-criteria {
+
+}
+
+.slider.slider-horizontal {
+	width: 100%;
+}

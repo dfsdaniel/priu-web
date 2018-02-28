@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-2 text-center">
+    {{user-ranking}}
+    <button type="button" class="btn btn-primary">Próxima estória</button>
+  </div>
+  
+  <div class="col-md text-center">
+    <h1 class="text-primary">Como usuário eu quero cadastrar filme no sistema</h1>
+    <textarea class="form-control" rows="10">Esta é a descrição completa da estória</textarea>
+
+    <div class="story-button-options mt-2" role="group">
+      <button type="button" class="btn btn-secondary">Mais detalhes</button>
+      <button type="button" class="btn btn-secondary">Critérios de aceitação</button>
+      <button type="button" class="btn btn-secondary">Wireframes</button>
+    </div>
+
+    <div class="story-criteria card mt-2">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-2">
+            {{priu-icon name="user-dislike"}}
+          </div>
+          <div class="col-md">
+            <input id="ex8" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20"
+            	data-slider-step="1" data-slider-value="14"/>
+          </div>
+          <div class="col-md-2">
+            {{priu-icon name="user-like"}}
+          </div>
+        </div>          
+      </div>
+    </div>      
+  </div>
+  
+  <div class="col-md-3">
+    {{story-comments}}
+  </div>
+</div>
