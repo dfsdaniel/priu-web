@@ -1,3 +1,17 @@
+/* LOGO */
+.navbar-brand {
+	display: flex;
+	align-items: center;
+	font-weight: bold;
+	font-size: 2rem;	
+}
+
+.navbar-brand .priu-icon {
+	width: 50px;
+	height: 50px;
+	margin-right: 5px;
+}
+
 /* STORY */
 .story-button-options {	
 	display: flex;	
@@ -56,4 +70,25 @@
 .story-comments .card {
 	height: 433px;
 	overflow: scroll;
+}
+
+.comments-title {
+	display: flex;
+	align-items: center;
+}
+.comments-title .priu-icon {
+	width: 30px;
+	height: 30px;
+}
+
+.icon-button {
+	display: flex;
+	align-items: center;
+}
+
+.icon-button .priu-icon {
+	width: 30px;
+	height: 30px;
+	fill: white;
+	margin-right: 5px;
 }
