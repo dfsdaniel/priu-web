@@ -1,7 +1,11 @@
 import Controller from '@ember/controller';
+import { alias } from '@ember/object/computed'
 import moment from 'moment';
 
-export default Controller.extend({  
+export default Controller.extend({
+
+	currentUser: alias('diUser.currentUser'),
+
 	actions: {
 		saveComment(comment) {
 			const story = this.get('model');

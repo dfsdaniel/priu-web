@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-md-2 text-center">
-    {{user-ranking}}
-    <button type="button" class="btn btn-primary mt-2">Próxima estória</button>
+    {{user-ranking ranking=currentUser.ranking}}
+    <button type="button" class="btn btn-primary mt-2 mx-auto icon-button">{{priu-icon name="next"}}Próxima<br />Estória</button>
   </div>
-  
+
   <div class="col-md text-center">
     <h2 class="text-primary">{{model.title}}</h2>
     <textarea class="form-control" rows="5">{{model.description}}</textarea>
@@ -13,13 +13,13 @@
       <button type="button" class="btn btn-secondary">Critérios de aceitação</button>
       <button type="button" class="btn btn-secondary">Wireframes</button>
     </div>
-    
+
     {{story-criteria text="É muito importante para a sprint?" value=model.benefit}}
     {{story-criteria text="Vai fazer muita falta se não existir?" value=model.penalty invertIcons=true}}
 
-    <button type="button" class="btn btn-primary mt-2 mx-auto icon-button">{{priu-icon name="save"}} Salvar</button>
+    <button type="button" class="btn btn-primary mt-2 mx-auto icon-button">{{priu-icon name="save"}}Salvar</button>
   </div>
-  
+
   <div class="col-md-3">
     {{story-comments story=model saveComment=(action "saveComment")}}
   </div>

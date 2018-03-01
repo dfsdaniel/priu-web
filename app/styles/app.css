@@ -3,7 +3,7 @@
 	display: flex;
 	align-items: center;
 	font-weight: bold;
-	font-size: 2rem;	
+	font-size: 2rem;
 }
 
 .navbar-brand .priu-icon {
@@ -13,8 +13,8 @@
 }
 
 /* STORY */
-.story-button-options {	
-	display: flex;	
+.story-button-options {
+	display: flex;
 	justify-content: space-between;
 }
 
@@ -43,7 +43,7 @@
 
 /* PRIU-ICON */
 .priu-icon{
-	width: 60px; 
+	width: 60px;
 	height: 60px;
 }
 
@@ -68,7 +68,7 @@
 
 /* STORY-COMMENTS */
 .story-comments .card {
-	height: 433px;
+	height: 408px;
 	overflow: scroll;
 }
 

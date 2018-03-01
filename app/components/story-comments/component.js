@@ -1,18 +1,19 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import moment from 'moment';
 
 export default Component.extend({
     classNames: 'story-comments',
 
-    sortProperty: ['dateTime:desc'],
-
-    comments: computed.sort('story.comments.[]', 'sortProperty'),
+    comments: computed.sort('story.comments.[]', function(cmA, cmB) {
+        return moment(cmB.get('dateTime')).isAfter(cmA.get('dateTime'));
+    }),
 
     didInsertElement() {
         const $textArea = this.$('textarea');
         $textArea.keyup((event) => {
             if (event.keyCode == 13) { //ENTER
-                this.sendAction('saveComment', $textArea.val());
+                this.get('saveComment')($textArea.val());
                 $textArea.val('');
             }
         });

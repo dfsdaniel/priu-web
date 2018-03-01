@@ -6,7 +6,6 @@
       {{#each comments as |cm|}}
         <li>
           {{cm.content}}<br />
-          {{cm.dateTime}}<br />
           <small>{{moment-from-now cm.dateTime}}</small>
         </li>
       {{/each}}
