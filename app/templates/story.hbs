@@ -14,13 +14,18 @@
       <button type="button" class="btn btn-secondary">Wireframes</button>
     </div>
 
-    {{story-criteria text="É muito importante para a sprint?" value=model.benefit}}
-    {{story-criteria text="Vai fazer muita falta se não existir?" value=model.penalty invertIcons=true}}
+    {{#if currentUser.isPO}}
+      {{story-criteria text="É muito importante para a sprint?" value=model.benefit}}
+      {{story-criteria text="Vai fazer muita falta se não existir?" value=model.penalty invertIcons=true}}
+    {{else}}
+      {{story-criteria text="É muito trabalhosa e difícil ser feita?" value=model.cost}}
+      {{story-criteria text="Existe um alto risco de não ser concluída a tempo?" value=model.risk invertIcons=true}}
+    {{/if}}
 
     <button type="button" class="btn btn-primary mt-2 mx-auto icon-button">{{priu-icon name="save"}}Salvar</button>
   </div>
 
   <div class="col-md-3">
-    {{story-comments story=model saveComment=(action "saveComment")}}
+    {{story-comments story=model currentUser=currentUser saveComment=(action "saveComment")}}
   </div>
 </div>

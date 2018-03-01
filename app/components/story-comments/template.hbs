@@ -1,15 +1,21 @@
 <h5 class="comments-title">{{priu-icon name="comments"}} Comentários</h5>
 <div class="card">
-  <div class="card-body">
+  <div class="card-body p-2">
     {{#if comments}}
-      <ul>
       {{#each comments as |cm|}}
-        <li>
-          {{cm.content}}<br />
-          <small>{{moment-from-now cm.dateTime}}</small>
-        </li>
+        <div class="row story-comment">
+          <div class="col-md-2">
+            {{priu-icon name="user-avatar"}}
+          </div>
+          <div class="col-md">
+            <div class="user-name">{{cm.user.name}}</div>
+            <div class="comment-content text-info">
+              {{cm.content}}
+            </div>
+            <small>{{moment-from-now cm.dateTime}}</small>
+          </div>
+        </div>
       {{/each}}
-      </ul>
     {{else}}
       Seja o primeiro a comentar e ganhe pontos!
     {{/if}}

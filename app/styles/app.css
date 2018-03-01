@@ -76,6 +76,7 @@
 	display: flex;
 	align-items: center;
 }
+
 .comments-title .priu-icon {
 	width: 30px;
 	height: 30px;
@@ -91,4 +92,19 @@
 	height: 30px;
 	fill: white;
 	margin-right: 5px;
+}
+
+.story-comment {
+	align-items: top;
+	margin-bottom: 10px;
+}
+
+.story-comment .priu-icon {
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
+}
+
+.story-comment .user-name {
+	font-weight: bold;
 }

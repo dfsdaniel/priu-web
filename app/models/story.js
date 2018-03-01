@@ -21,7 +21,7 @@ Story.reopenClass({
             benefit: 3,
             penalty: 5,
             cost: 3,
-            risk: 3,
+            risk: 9,
             comments: [1, 2]
         },
         {

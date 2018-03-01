@@ -10,6 +10,7 @@ export default Controller.extend({
 		saveComment(comment) {
 			const story = this.get('model');
 			story.get('comments').pushObject(this.store.createRecord('story-comment', {
+				user: this.get('diUser.currentUser'),
 				story: story,
 				content: comment,
 				dateTime: moment()
