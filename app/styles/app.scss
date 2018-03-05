@@ -1,0 +1,22 @@
+@import 'colors';
+@import 'header';
+@import 'story';
+
+@import 'components/user-info';
+@import 'components/user-ranking';
+@import 'components/priu-icon';
+@import 'components/story-criteria';
+@import 'components/story-comments';
+@import 'components/stories-progress';
+
+.icon-button {
+	display: flex;
+	align-items: center;
+
+	.priu-icon {
+		width: 30px;
+		height: 30px;
+		fill: white;
+		margin-right: 5px;
+	}
+}

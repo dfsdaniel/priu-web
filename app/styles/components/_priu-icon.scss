@@ -1,0 +1,12 @@
+.priu-icon {
+	width: 60px;
+	height: 60px;
+
+	svg.user-like {
+		fill: $bootstrap-green;
+	}
+
+	svg.user-dislike {
+		fill: $bootstrap-red;
+	}
+}

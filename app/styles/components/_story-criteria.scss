@@ -1,0 +1,12 @@
+.story-criteria {
+	.criteria-icon {
+		display: flex;
+		align-items: center;
+	}
+}
+
+.slider {
+	&.slider-horizontal {
+		width: 90%;
+	}
+}

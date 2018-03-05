@@ -1,0 +1,35 @@
+.story-comments {
+	.card {
+		height: 408px;
+		overflow: scroll;
+	}
+
+	.comments-title {
+		display: flex;
+		align-items: center;
+
+		.priu-icon {
+			width: 30px;
+			height: 30px;
+		}
+	}
+
+	.story-comment {
+		align-items: top;
+		margin-bottom: 10px;
+
+		.priu-icon {
+			width: 30px;
+			height: 30px;
+			margin-right: 10px;
+		}
+
+		.user-name {
+			font-weight: bold;
+		}
+
+		small {
+			color: $bootstrap-gray;
+		}
+	}
+}

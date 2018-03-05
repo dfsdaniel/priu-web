@@ -1,0 +1,6 @@
+<small>Seu progresso:</small>
+<div class="story-container">
+	{{#each storiesWithUserInfo as |story|}}
+		<a class='story-p {{if story.voted 'voted'}}' href="/story/{{story.id}}"></a>
+	{{/each}}
+</div>

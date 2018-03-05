@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-md-2 text-center">
     {{user-ranking ranking=currentUser.ranking}}
+    {{stories-progress stories=allStories currentUser=currentUser}}
     <button type="button" class="btn btn-primary mt-2 mx-auto icon-button">{{priu-icon name="next"}}Próxima<br />Estória</button>
   </div>
 
@@ -13,13 +14,12 @@
       <button type="button" class="btn btn-secondary">Critérios de aceitação</button>
       <button type="button" class="btn btn-secondary">Wireframes</button>
     </div>
-
     {{#if currentUser.isPO}}
-      {{story-criteria text="É muito importante para a sprint?" value=model.benefit}}
-      {{story-criteria text="Vai fazer muita falta se não existir?" value=model.penalty invertIcons=true}}
+      {{story-criteria text="É muito importante para a sprint?" value=benefit}}
+      {{story-criteria text="Vai fazer muita falta se não existir?" value=penalty invertIcons=true}}
     {{else}}
-      {{story-criteria text="É muito trabalhosa e difícil ser feita?" value=model.cost}}
-      {{story-criteria text="Existe um alto risco de não ser concluída a tempo?" value=model.risk invertIcons=true}}
+      {{story-criteria text="É muito trabalhosa e difícil ser feita?" value=cost}}
+      {{story-criteria text="Existe um alto risco de não ser concluída a tempo?" value=risk invertIcons=true}}
     {{/if}}
 
     <button type="button" class="btn btn-primary mt-2 mx-auto icon-button">{{priu-icon name="save"}}Salvar</button>
