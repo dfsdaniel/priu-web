@@ -1,15 +1,15 @@
-import CurrentUser from 'priu-web/services/current-user';
+import Global from 'priu-web/services/global';
 
 export default {
     name: 'dependency-injection',
     initialize(application) {
         // Service registration
-        application.register('service:current-user', CurrentUser);
+        application.register('service:global', Global);
 
         // Injections into controllers
-        application.inject('controller', 'diUser', 'service:current-user');
+        application.inject('controller', 'diGlobal', 'service:global');
 
         // Injections into routes
-        application.inject('route', 'diUser', 'service:current-user');
+        application.inject('route', 'diGlobal', 'service:global');
     },
 };

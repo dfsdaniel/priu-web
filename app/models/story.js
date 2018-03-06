@@ -13,7 +13,7 @@ Story.reopenClass({
     {
       id: 1,
       title: 'Como usuário eu quero cadastrar filme no sistema',
-      description: 'Descrição da story 01',      
+      description: 'Descrição da story 01',
       comments: [1, 2],
       votes: [1, 3]
     },
@@ -22,7 +22,7 @@ Story.reopenClass({
       title: 'Como usuário eu quero listar todos os filmes',
       description: 'Descrição da story 02',
       comments: [3],
-      votes: [2, 4]
+      votes: [4]
     }
   ]
 });

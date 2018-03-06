@@ -9,14 +9,11 @@ export default Component.extend({
 	stories: null,
 	currentUser: null,
 
-
 	storiesWithUserInfo: computed('stories', function() {
-		const currentUser = this.get('currentUser');	
-
 		return this.get('stories').map((st) => {
 			return new ObjectProxy({
 				content: st,
-				voted: false
+				voted: st.get('votes').any(st => st.get('user.id') == this.get('currentUser.id'))
 			});
 		});
 	})

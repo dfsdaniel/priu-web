@@ -1,22 +1,20 @@
 import Controller from '@ember/controller';
 import { alias } from '@ember/object/computed';
 import { computed } from '@ember/object';
-import { A } from '@ember/array'
 import moment from 'moment';
 
 export default Controller.extend({
 
-	currentUser: alias('diUser.currentUser'),
+	currentUser: alias('diGlobal.currentUser'),
 
-	allStories: computed(function() {
-		const allStories = A();
-		allStories.pushObject(this.store.find('story', 1));
-		allStories.pushObject(this.store.find('story', 2));
-		return allStories;
-	}),
+	allStories: alias('diGlobal.allStories'),
 
-	userVote: computed('model', function() {
-		return this.get('model.votes').filter(vote => vote.get('user.id') == this.get('currentUser.id')).get('firstObject');
+	userVote: computed('model.votes.length', function() {
+		const userVote = this.get('model.votes').filter(vote => vote.get('user.id') == this.get('currentUser.id')).get('firstObject');
+		return userVote ? userVote : this.store.createRecord('story-vote', {
+			user: this.get('currentUser'),
+			story: this.get('model')
+		});
 	}),
 
 	benefit: computed.alias('userVote.benefit'),
@@ -25,10 +23,19 @@ export default Controller.extend({
 	risk: computed.alias('userVote.risk'),
 
 	actions: {
+		saveVote() {
+			const story = this.get('model');
+			const userVote = this.get('userVote');
+
+			userVote.save().then(vote => {
+				story.get('votes').pushObject(vote);
+			});
+		},
+
 		saveComment(comment) {
 			const story = this.get('model');
 			story.get('comments').pushObject(this.store.createRecord('story-comment', {
-				user: this.get('diUser.currentUser'),
+				user: this.get('currentUser'),
 				story: story,
 				content: comment,
 				dateTime: moment()
