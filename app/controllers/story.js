@@ -9,12 +9,9 @@ export default Controller.extend({
 
 	allStories: alias('diGlobal.allStories'),
 
-	userVote: computed('model.votes.length', function() {
+	userVote: computed('model', function() {
 		const userVote = this.get('model.votes').filter(vote => vote.get('user.id') == this.get('currentUser.id')).get('firstObject');
-		return userVote ? userVote : this.store.createRecord('story-vote', {
-			user: this.get('currentUser'),
-			story: this.get('model')
-		});
+		return userVote ? userVote : this.store.createRecord('story-vote');
 	}),
 
 	benefit: computed.alias('userVote.benefit'),
@@ -27,9 +24,15 @@ export default Controller.extend({
 			const story = this.get('model');
 			const userVote = this.get('userVote');
 
-			userVote.save().then(vote => {
-				story.get('votes').pushObject(vote);
+			userVote.setProperties({
+				story,
+				user: this.get('currentUser')
 			});
+
+			userVote.save().then(userVote => {
+				story.get('votes').pushObject(userVote);
+			});
+			this.send('refreshAppRoute');
 		},
 
 		saveComment(comment) {

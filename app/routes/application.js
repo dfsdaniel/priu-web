@@ -5,7 +5,7 @@ import { all } from 'rsvp';
 export default Route.extend({
   model() {
     return hash({
-      user: this.store.find('user', 1),
+      user: this.store.find('user', 2),
       allStories: this.store.findAll('story')
     }).then(result => {
       const allVotes = [];
@@ -30,5 +30,11 @@ export default Route.extend({
   afterModel(model) {
     this.set('diGlobal.currentUser', model.user);
     this.set('diGlobal.allStories', model.allStories);
+  },
+
+  actions: {
+    refreshAppRoute() {
+      this.refresh();
+    }
   }
 });

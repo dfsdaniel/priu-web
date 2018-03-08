@@ -11,5 +11,8 @@ export default {
 
         // Injections into routes
         application.inject('route', 'diGlobal', 'service:global');
+
+        // Injections into models
+        application.inject('model', 'diGlobal', 'service:global');
     },
 };

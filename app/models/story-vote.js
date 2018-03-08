@@ -4,25 +4,16 @@ const StoryVote = DS.Model.extend({
     user: DS.belongsTo('user'),
     story: DS.belongsTo('story'),
 
-    benefit: DS.attr('number'),
-    penalty: DS.attr('number'),
-    cost: DS.attr('number'),
-    risk: DS.attr('number'),
+    benefit: DS.attr('number', {defaultValue: 5}),
+    penalty: DS.attr('number', {defaultValue: 5}),
+    cost: DS.attr('number', {defaultValue: 5}),
+    risk: DS.attr('number', {defaultValue: 5}),
 });
 
 StoryVote.reopenClass({
   FIXTURES: [
     {
       id: 1,
-      user: 1,
-      story: 1,
-      benefit: 5,
-      penalty: 5,
-      cost: 9,
-      risk: 7,
-    },
-    {
-      id: 3,
       user: 2,
       story: 1,
       benefit: 9,
@@ -31,7 +22,7 @@ StoryVote.reopenClass({
       risk: 5,
     },
     {
-      id: 4,
+      id: 2,
       user: 2,
       story: 2,
       benefit: 7,

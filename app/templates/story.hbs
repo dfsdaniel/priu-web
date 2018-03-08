@@ -14,12 +14,19 @@
       <button type="button" class="btn btn-secondary">Critérios de aceitação</button>
       <button type="button" class="btn btn-secondary">Wireframes</button>
     </div>
+
+    {{#if model.isVoted}}
+      <div class="alert alert-info mt-2 mb-0">
+        <strong>Atenção!</strong> Você já votou nesta estória!
+      </div>
+    {{/if}}
+
     {{#if currentUser.isPO}}
       {{story-criteria text="É muito importante para a sprint?" value=benefit}}
-      {{story-criteria text="Vai fazer muita falta se não existir?" value=penalty invertIcons=true}}
+      {{story-criteria text="Vai fazer muita falta se não existir?" value=penalty}}
     {{else}}
       {{story-criteria text="É muito trabalhosa e difícil ser feita?" value=cost}}
-      {{story-criteria text="Existe um alto risco de não ser concluída a tempo?" value=risk invertIcons=true}}
+      {{story-criteria text="Existe um alto risco de não ser concluída a tempo?" value=risk}}
     {{/if}}
 
     <button type="button" class="btn btn-primary mt-2 mx-auto icon-button" {{action "saveVote"}}>{{priu-icon name="save"}}Salvar</button>
