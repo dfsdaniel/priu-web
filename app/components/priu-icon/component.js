@@ -27,6 +27,5 @@ export default Component.extend({
 			default:
 				return '';
 		}
-
 	})
 });

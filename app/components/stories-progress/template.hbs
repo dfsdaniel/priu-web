@@ -1,6 +1,6 @@
 <small>Seu progresso:</small>
 <div class="story-container">
 	{{#each stories as |story|}}
-    {{#link-to "story" story.id class="story-p" classBinding="story.isVoted:voted"}}{{/link-to}}
+    {{#link-to "story" story.id class="story-p" classBinding="story.isVoted:voted"}}{{story.id}}{{/link-to}}
 	{{/each}}
 </div>

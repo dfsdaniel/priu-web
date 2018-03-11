@@ -7,7 +7,7 @@
 		margin-bottom: 10px;
 	}
 	
-	.story-container{	
+	.story-container {	
 		padding-bottom: 15px;
 		list-style: none;
 		flex-flow: row wrap;
@@ -16,6 +16,11 @@
 	}
 
 	.story-p {
+		color: black;
+		text-align: center;
+		font-size: 12px;
+		font-weight: bold;
+		padding-top: 1px;
 		margin: 0 0 5px 5px;
 		width: 25px;
 		height: 25px;
@@ -24,6 +29,23 @@
 
 		&.voted {
 			background-color: $bootstrap-green;
+			color: white;
+
+			&.active {
+				color: white;
+			}
+		}
+
+		&.active {
+			border-color: $bootstrap-blue;
+			color: $bootstrap-blue;
+		}
+
+		&:hover {
+			text-decoration: none;
+			background-color: $bootstrap-blue;
+			color: white;
+			border-color: $bootstrap-blue;
 		}
 	}
 }

@@ -19,6 +19,10 @@ export default Controller.extend({
 	cost: computed.alias('userVote.cost'),
 	risk: computed.alias('userVote.risk'),
 
+	btDetailsDisabled: computed.empty('model.details'),
+	btAcceptanceDisabled: computed.empty('model.acceptance'),
+	btWireframesDisabled: computed.empty('model.wireframes'),
+
 	actions: {
 		saveVote() {
 			const story = this.get('model');

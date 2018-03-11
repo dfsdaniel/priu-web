@@ -1,0 +1,9 @@
+{{#if disabled}}
+	<button type="button" class="btn btn-secondary disabled">
+		{{title}}
+	</button>
+{{else}}
+	<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="{{target}}">
+		{{title}}
+	</button>
+{{/if}}
