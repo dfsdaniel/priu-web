@@ -41,12 +41,11 @@ export default Controller.extend({
 		},
 
 		saveComment(comment) {
-			const story = this.get('model');
+			const story = this.get('model');			
 			const newComment = this.store.createRecord('story-comment', {
 				user: this.get('currentUser'),
-				story: story,
 				content: comment,
-				dateTime: moment()
+				dateTime: moment().format()
 			});
 			newComment.save().then(newComment => {
 				story.get('comments').pushObject(newComment);

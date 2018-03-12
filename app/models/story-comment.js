@@ -3,7 +3,7 @@ import DS from 'ember-data';
 const StoryComment = DS.Model.extend({
   user: DS.belongsTo('user'),
 
-  dateTime: DS.attr('date'),
+  dateTime: DS.attr('string'),
   content: DS.attr('string')
 });
 
