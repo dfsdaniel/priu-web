@@ -8,7 +8,7 @@ const Story = DS.Model.extend({
   acceptance: DS.attr('string'),
   wireframes: DS.attr('string'),
 
-  votes: DS.hasMany('story-vote', {inverse: 'story'}),
+  votes: DS.hasMany('story-vote', {async: true, inverse: null}),
   comments: DS.hasMany('story-comment', {async: true, inverse: null}),
 
   isVoted: computed('votes', function() {

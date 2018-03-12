@@ -5,7 +5,7 @@ import { all } from 'rsvp';
 export default Route.extend({
   model() {
     return hash({
-      user: this.store.find('user', 1),
+      user: this.store.find('user', 2),
       allStories: this.store.findAll('story')
     }).then(result => {
       const allVotes = [];

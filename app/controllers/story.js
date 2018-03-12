@@ -35,18 +35,23 @@ export default Controller.extend({
 
 			userVote.save().then(userVote => {
 				story.get('votes').pushObject(userVote);
+				story.save();
 			});
 			this.send('refreshAppRoute');
 		},
 
 		saveComment(comment) {
 			const story = this.get('model');
-			story.get('comments').pushObject(this.store.createRecord('story-comment', {
+			const newComment = this.store.createRecord('story-comment', {
 				user: this.get('currentUser'),
 				story: story,
 				content: comment,
 				dateTime: moment()
-			}));
+			});
+			newComment.save().then(newComment => {
+				story.get('comments').pushObject(newComment);
+				story.save();
+			});
 		}
 	}
 });

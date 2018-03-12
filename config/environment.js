@@ -3,10 +3,10 @@
 module.exports = function(environment) {
   let ENV = {
     firebase: {
-      databaseURL: 'https://priu-c3ca2.firebaseio.com',
-      apiKey: 'AIzaSyALeiq4fdDVT05u24mNHoJCeZQ4XEKbM-E',
-      authDomain: 'priu-c3ca2.firebaseapp.com',
-      storageBucket: 'priu-c3ca2.appspot.com',
+      databaseURL: 'https://priu-web.firebaseio.com',
+      apiKey: 'AIzaSyDvphWT2Z0MAtyRn9E9FYdNMeaGfvNd8Io',
+      authDomain: 'priu-web.firebaseapp.com',
+      storageBucket: 'priu-web.appspot.com',
     },
 
     modulePrefix: 'priu-web',

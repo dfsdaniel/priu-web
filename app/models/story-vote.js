@@ -2,7 +2,6 @@ import DS from 'ember-data';
 
 const StoryVote = DS.Model.extend({
     user: DS.belongsTo('user'),
-    story: DS.belongsTo('story'),
 
     benefit: DS.attr('number', {defaultValue: 5}),
     penalty: DS.attr('number', {defaultValue: 5}),
