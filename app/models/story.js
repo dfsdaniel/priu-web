@@ -9,7 +9,7 @@ const Story = DS.Model.extend({
   wireframes: DS.attr('string'),
 
   votes: DS.hasMany('story-vote', {inverse: 'story'}),
-  comments: DS.hasMany('story-comment', {inverse: 'story'}),
+  comments: DS.hasMany('story-comment', {async: true, inverse: null}),
 
   isVoted: computed('votes', function() {
     return this.get('votes').any(vote => vote.get('user.id') == this.get('diGlobal.currentUser.id'))

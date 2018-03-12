@@ -1,15 +1,16 @@
-import FixtureAdapter from 'ember-data-fixture-adapter';
+import FirebaseAdapter from 'emberfire/adapters/firebase';
 
-export default FixtureAdapter.extend({
-  findRecord(store, typeClass, id) {
-    return this.find(store, typeClass, id);
-  },
-
-  query(store, typeClass, query) {
-    return this.findQuery(store, typeClass, query);
-  }
+export default FirebaseAdapter.extend({
 });
-//import DS from 'ember-data';
 
-// export default DS.JSONAPIAdapter.extend({
+// import FixtureAdapter from 'ember-data-fixture-adapter';
+
+// export default FixtureAdapter.extend({
+//   findRecord(store, typeClass, id) {
+//     return this.find(store, typeClass, id);
+//   },
+
+//   query(store, typeClass, query) {
+//     return this.findQuery(store, typeClass, query);
+//   }
 // });
