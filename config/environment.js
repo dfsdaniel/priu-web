@@ -9,6 +9,10 @@ module.exports = function(environment) {
       storageBucket: 'priu-web.appspot.com',
     },
 
+    torii: {
+      sessionServiceName: 'userSession'
+    },
+
     modulePrefix: 'priu-web',
     environment,
     rootURL: '/',

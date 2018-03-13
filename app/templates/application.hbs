@@ -18,7 +18,12 @@
       </ul>
 
       <div class="my-2 my-lg-0">
-        {{user-info user=model.user}}
+        {{#if userSession.isAuthenticated}}
+          {{user-info user=model.user}}
+          <button {{action "signOut"}}>Sign out</button>
+        {{else}}
+          <button {{action "signIn"}}>Entrar</button>
+        {{/if}}
       </div>
     </div>
   </div>

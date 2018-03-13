@@ -3,9 +3,15 @@ import { hash } from 'rsvp';
 import { all } from 'rsvp';
 
 export default Route.extend({
+  beforeModel: function() {
+    return this.get('userSession').fetch().catch(function() {
+      //redirecionar para o login
+    });
+  },
+
   model() {
     return hash({
-      user: this.store.find('user', 1),
+      user: this.store.find('user', 2),
       allStories: this.store.findAll('story')
     }).then(result => {
       const allVotes = [];
@@ -35,6 +41,20 @@ export default Route.extend({
   actions: {
     refreshAppRoute() {
       this.refresh();
+    },
+
+    signIn: function() {
+      this.get('userSession').open('firebase', {
+        provider: 'password',
+        email: 'dfs@cesar.org.br',
+        password: '123456'
+      }).then(data => {
+        console.log(data.currentUser.uid);
+      });
+    },
+
+    signOut: function() {
+      this.get('userSession').close();
     }
   }
 });
