@@ -5,24 +5,24 @@
   	</a>
 
     <div class="navbar-collapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          {{#link-to "index" class="nav-link"}}Visão Geral{{/link-to}}
-        </li>
-        <li class="nav-item">
-          {{#link-to "story" "1" class="nav-link"}}Estória{{/link-to}}
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="#">Instruções</a>
-        </li>
-      </ul>
+      {{#if userSession.isAuthenticated}}
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            {{#link-to "index" class="nav-link"}}Visão Geral{{/link-to}}
+          </li>
+          <li class="nav-item">
+            {{#link-to "story" "1" class="nav-link"}}Estória{{/link-to}}
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="#">Instruções</a>
+          </li>
+        </ul>
+      {{/if}}
 
       <div class="my-2 my-lg-0">
         {{#if userSession.isAuthenticated}}
           {{user-info user=model.user}}
-          <button {{action "signOut"}}>Sign out</button>
-        {{else}}
-          <button {{action "signIn"}}>Entrar</button>
+          <small><a href="#" {{action "signOut"}}>Sair</a></small>
         {{/if}}
       </div>
     </div>

@@ -4,14 +4,24 @@ import { all } from 'rsvp';
 
 export default Route.extend({
   beforeModel: function() {
-    return this.get('userSession').fetch().catch(function() {
-      //redirecionar para o login
+    return this.get('userSession').fetch()
+    .then(() => {
+      this.set('diGlobal.currentUserId', this.get('userSession.currentUser.uid'));
+    })
+    .catch(() => {
+      this.transitionTo('login');
     });
   },
 
   model() {
+    const currentUserId = this.get('diGlobal.currentUserId');
+    
+    if (!currentUserId) {
+      return null;
+    }
+
     return hash({
-      user: this.store.find('user', 2),
+      user: this.store.find('user', currentUserId),
       allStories: this.store.findAll('story')
     }).then(result => {
       const allVotes = [];
@@ -34,8 +44,10 @@ export default Route.extend({
   },
 
   afterModel(model) {
-    this.set('diGlobal.currentUser', model.user);
-    this.set('diGlobal.allStories', model.allStories);
+    if (model) {
+      this.set('diGlobal.currentUser', model.user);
+      this.set('diGlobal.allStories', model.allStories);
+    }
   },
 
   actions: {
@@ -43,18 +55,25 @@ export default Route.extend({
       this.refresh();
     },
 
-    signIn: function() {
+    signIn(email, password, onSuccess, onError) {
       this.get('userSession').open('firebase', {
         provider: 'password',
-        email: 'dfs@cesar.org.br',
-        password: '123456'
+        email: email,
+        password: password
       }).then(data => {
-        console.log(data.currentUser.uid);
+        this.set('diGlobal.currentUserId', data.currentUser.uid);
+        onSuccess();
+        this.send('refreshAppRoute');
+      }).catch(error => {
+        onError(error);
       });
     },
 
-    signOut: function() {
-      this.get('userSession').close();
+    signOut() {
+      this.get('userSession').close().then(() => {
+        this.set('diGlobal.currentUserId', null);
+        this.send('refreshAppRoute');
+      });      
     }
   }
 });
