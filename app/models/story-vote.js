@@ -7,6 +7,8 @@ const StoryVote = DS.Model.extend({
     penalty: DS.attr('number', {defaultValue: 5}),
     cost: DS.attr('number', {defaultValue: 5}),
     risk: DS.attr('number', {defaultValue: 5}),
+
+    dateTime: DS.attr('string')
 });
 
 StoryVote.reopenClass({

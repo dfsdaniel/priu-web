@@ -11,7 +11,7 @@
             {{#link-to "index" class="nav-link"}}Visão Geral{{/link-to}}
           </li>
           <li class="nav-item">
-            {{#link-to "story" "1" class="nav-link"}}Estória{{/link-to}}
+            {{#link-to "story" "1" class="nav-link"}}Estórias{{/link-to}}
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="#">Instruções</a>
@@ -21,8 +21,7 @@
 
       <div class="my-2 my-lg-0">
         {{#if userSession.isAuthenticated}}
-          {{user-info user=model.user}}
-          <small><a href="#" {{action "signOut"}}>Sair</a></small>
+          {{user-info user=model.user onSignOut=(action "onSignOut")}}
         {{/if}}
       </div>
     </div>

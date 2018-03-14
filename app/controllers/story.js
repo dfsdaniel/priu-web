@@ -30,7 +30,8 @@ export default Controller.extend({
 
 			userVote.setProperties({
 				story,
-				user: this.get('currentUser')
+				user: this.get('currentUser'),
+				dateTime: moment().format()
 			});
 
 			userVote.save().then(userVote => {
@@ -41,7 +42,7 @@ export default Controller.extend({
 		},
 
 		saveComment(comment) {
-			const story = this.get('model');			
+			const story = this.get('model');
 			const newComment = this.store.createRecord('story-comment', {
 				user: this.get('currentUser'),
 				content: comment,

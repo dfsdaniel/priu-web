@@ -8,8 +8,8 @@
             {{priu-icon name="user-avatar"}}
           </div>
           <div class="col-md">
-            <div class="user-name">{{cm.user.name}}</div>
-            <div class="comment-content text-info">
+            <div class="user-name">{{cm.user.name}} <span class="badge role-{{cm.user.role}}">{{cm.user.role}}</span></div>
+            <div class="comment-content">
               {{cm.content}}
             </div>
             <small>{{moment-from-now cm.dateTime}}</small>

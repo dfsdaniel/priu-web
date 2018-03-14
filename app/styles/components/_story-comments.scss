@@ -17,6 +17,8 @@
 	.story-comment {
 		align-items: top;
 		margin-bottom: 10px;
+		padding-bottom: 10px;
+		border-bottom: 1px solid rgba(0,0,0,.125);
 
 		.priu-icon {
 			width: 30px;
@@ -25,7 +27,22 @@
 		}
 
 		.user-name {
+			display: flex;
 			font-weight: bold;
+			align-items: center;
+
+			.badge {
+				margin-left: 5px;
+				color: white;
+			}
+
+			.role-PO {
+				background-color: $bootstrap-red;
+			}
+
+			.role-DEV {
+				background-color: $bootstrap-green;
+			}
 		}
 
 		small {
