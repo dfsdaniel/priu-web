@@ -8,7 +8,7 @@ export default Component.extend({
 
   story: null,
 
-  comments: computed('story.comments.[]', function() {
+  comments: computed('story.comments.@each.opinions', function() {
     return _.sortBy(this.get('story.comments').toArray(), comment => {
       return new moment(comment.get('dateTime'));
     }).reverse();
@@ -22,5 +22,15 @@ export default Component.extend({
         $textArea.val('');
       }
     });
+  },
+
+  actions: {
+    likeComment(comment) {
+      this.get('addCommentLike')(comment);
+    },
+
+    dislikeComment(comment) {
+      this.get('addCommentDislike')(comment);
+    }
   }
 });

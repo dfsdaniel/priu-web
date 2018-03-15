@@ -13,6 +13,18 @@
               {{cm.content}}
             </div>
             <small>{{moment-from-now cm.dateTime}}</small>
+
+            {{#if cm.canSendOpinion}}
+              <div>
+                <button type="button" class="btn btn-primary" {{action "likeComment" cm}}>Like ({{cm.likesCount}})</button>
+                <button type="button" class="btn btn-primary" {{action "dislikeComment" cm}}>Dislike ({{cm.dislikesCount}})</button>
+              </div>
+            {{else}}
+              <div>
+                Like ({{cm.likesCount}}) / Dislike ({{cm.dislikesCount}})
+              </div>
+            {{/if}}
+
           </div>
         </div>
       {{/each}}

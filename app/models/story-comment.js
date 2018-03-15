@@ -1,10 +1,31 @@
 import DS from 'ember-data';
+import { computed } from '@ember/object';
+import { StoryCommentsConstants } from 'priu-web/utils/constants';
 
 const StoryComment = DS.Model.extend({
   user: DS.belongsTo('user'),
 
   dateTime: DS.attr('string'),
-  content: DS.attr('string')
+  content: DS.attr('string'),
+
+  opinions: DS.hasMany('story-comment-opinion', {async: true, inverse: null}),
+
+  likesCount: computed('opinions.[]', function() {
+    const likes = this.get('opinions').filter(op => op.get('type') == StoryCommentsConstants.OPINION_TYPES.LIKE);
+    return likes.get('length');
+  }),
+
+  dislikesCount: computed('opinions.length', function() {
+    const likes = this.get('opinions').filter(op => op.get('type') == StoryCommentsConstants.OPINION_TYPES.DISLIKE);
+    return likes.get('length');
+  }),
+
+  canSendOpinion: computed('opinions.[]', function() {
+    const currentUser = this.get('diGlobal.currentUser');
+
+    return this.get('user.id') != currentUser.get('id') &&
+      this.get('opinions').every(comment => comment.get('user.id') != currentUser.get('id'));
+  })
 });
 
 StoryComment.reopenClass({

@@ -32,7 +32,11 @@
   </div>
 
   <div class="col-md-3">
-    {{story-comments story=model saveComment=(action "saveComment")}}
+    {{story-comments story=model
+      currentUser=currentUser
+      saveComment=(action "saveComment")
+      addCommentLike=(action "addCommentLike")
+      addCommentDislike=(action "addCommentDislike")}}
   </div>
 
   {{partial "modals"}}

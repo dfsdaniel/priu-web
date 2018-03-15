@@ -1,4 +1,6 @@
 import Route from '@ember/routing/route';
+import { resolve } from 'rsvp';
+import { all } from 'rsvp';
 
 export default Route.extend({
 	beforeModel: function() {
@@ -8,6 +10,15 @@ export default Route.extend({
   },
 
   model(params) {
-    return this.store.peekRecord('story', params.story_id);
+    return this.store.findRecord('story', params.story_id).then(story => {
+      return resolve(story.get('comments')).then(comments => {
+        const allOpinions = [];
+
+        comments.forEach(comment => {
+          allOpinions.push(comment.get('opinions'));
+        });
+        return all(allOpinions).then(() => story);
+      });
+    });
 	}
 });

@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { alias } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import moment from 'moment';
+import { StoryCommentsConstants } from 'priu-web/utils/constants';
 
 export default Controller.extend({
 
@@ -23,6 +24,21 @@ export default Controller.extend({
 	btAcceptanceDisabled: computed.empty('model.acceptance'),
 	btWireframesDisabled: computed.empty('model.wireframes'),
 
+	addCommentOpinion(comment, type) {
+		const commentOpinion = this.store.createRecord('story-comment-opinion', {
+      user: this.get('currentUser'),
+      type: type,
+      dateTime: moment().format()
+    });
+
+    commentOpinion.save().then(opinion => {
+      comment.get('opinions').pushObject(opinion);
+      comment.save().then(()=> {
+      	this.set('model', this.get('model'));
+      });
+    });
+	},
+
 	actions: {
 		saveVote() {
 			const story = this.get('model');
@@ -41,17 +57,25 @@ export default Controller.extend({
 			this.send('refreshAppRoute');
 		},
 
-		saveComment(comment) {
+		saveComment(commentText) {
 			const story = this.get('model');
 			const newComment = this.store.createRecord('story-comment', {
 				user: this.get('currentUser'),
-				content: comment,
+				content: commentText,
 				dateTime: moment().format()
 			});
 			newComment.save().then(newComment => {
 				story.get('comments').pushObject(newComment);
 				story.save();
 			});
+		},
+
+		addCommentLike(comment) {
+			this.addCommentOpinion(comment, StoryCommentsConstants.OPINION_TYPES.LIKE);
+		},
+
+		addCommentDislike(comment) {
+			this.addCommentOpinion(comment, StoryCommentsConstants.OPINION_TYPES.DISLIKE);
 		}
 	}
 });

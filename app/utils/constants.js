@@ -5,4 +5,11 @@ const UserConstants = {
   }
 }
 
-export { UserConstants };
+const StoryCommentsConstants = {
+  OPINION_TYPES: {
+    LIKE: 'LIKE',
+    DISLIKE: 'DISLIKE'
+  }
+}
+
+export { UserConstants, StoryCommentsConstants };
