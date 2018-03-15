@@ -26,11 +26,15 @@ export default Component.extend({
 
   actions: {
     likeComment(comment) {
-      this.get('addCommentLike')(comment);
+      if (comment.get('canSendOpinion')) {
+        this.get('addCommentLike')(comment);
+      }
     },
 
     dislikeComment(comment) {
-      this.get('addCommentDislike')(comment);
+      if (comment.get('canSendOpinion')) {
+        this.get('addCommentDislike')(comment);
+      }
     }
   }
 });

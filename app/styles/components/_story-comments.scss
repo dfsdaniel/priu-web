@@ -26,6 +26,42 @@
 			margin-right: 10px;
 		}
 
+		.opinion-buttons {
+			display: flex;
+			justify-content: flex-end;
+
+			.bt-like {
+				padding: 3px;
+				margin-right: 5px;
+
+				.priu-icon {
+					fill: $bootstrap-green;
+				}
+
+				&.active,
+				&:hover {
+					.priu-icon {
+						fill: white;
+					}
+				}
+			}
+
+			.bt-dislike {
+				padding: 3px;
+
+				.priu-icon {
+					fill: $bootstrap-red;
+				}
+
+				&.active,
+				&:hover {
+					.priu-icon {
+						fill: white;
+					}
+				}
+			}
+		}
+
 		.user-name {
 			display: flex;
 			font-weight: bold;
@@ -37,11 +73,11 @@
 			}
 
 			.role-PO {
-				background-color: $bootstrap-red;
+				background-color: $bootstrap-lightblue;
 			}
 
 			.role-DEV {
-				background-color: $bootstrap-green;
+				background-color: $orange;
 			}
 		}
 

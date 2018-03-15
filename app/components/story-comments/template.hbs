@@ -14,17 +14,10 @@
             </div>
             <small>{{moment-from-now cm.dateTime}}</small>
 
-            {{#if cm.canSendOpinion}}
-              <div>
-                <button type="button" class="btn btn-primary" {{action "likeComment" cm}}>Like ({{cm.likesCount}})</button>
-                <button type="button" class="btn btn-primary" {{action "dislikeComment" cm}}>Dislike ({{cm.dislikesCount}})</button>
-              </div>
-            {{else}}
-              <div>
-                Like ({{cm.likesCount}}) / Dislike ({{cm.dislikesCount}})
-              </div>
-            {{/if}}
-
+            <div class="opinion-buttons">
+              <button type="button" class="btn btn-outline-success btn-sm bt-like icon-button {{if (eq cm.currentUserOpinion.type 'LIKE') 'active'}}" {{action "likeComment" cm}}>{{priu-icon name="like"}}{{cm.likesCount}}</button>
+              <button type="button" class="btn btn-outline-danger btn-sm bt-dislike icon-button {{if (eq cm.currentUserOpinion.type 'DISLIKE') 'active'}}" {{action "dislikeComment" cm}}>{{priu-icon name="dislike"}}{{cm.dislikesCount}}</button>
+            </div>
           </div>
         </div>
       {{/each}}

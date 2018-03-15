@@ -10,21 +10,25 @@ const StoryComment = DS.Model.extend({
 
   opinions: DS.hasMany('story-comment-opinion', {async: true, inverse: null}),
 
-  likesCount: computed('opinions.[]', function() {
+  likesCount: computed('opinions.@each.type', function() {
     const likes = this.get('opinions').filter(op => op.get('type') == StoryCommentsConstants.OPINION_TYPES.LIKE);
     return likes.get('length');
   }),
 
-  dislikesCount: computed('opinions.length', function() {
+  dislikesCount: computed('opinions.@each.type', function() {
     const likes = this.get('opinions').filter(op => op.get('type') == StoryCommentsConstants.OPINION_TYPES.DISLIKE);
     return likes.get('length');
   }),
 
-  canSendOpinion: computed('opinions.[]', function() {
+  currentUserOpinion: computed('opinions.[]', function() {
     const currentUser = this.get('diGlobal.currentUser');
+    const opinions = this.get('opinions').filter(comment => comment.get('user.id') == currentUser.get('id'));
+    return opinions.length ? opinions.get('firstObject') : null;
+  }),
 
-    return this.get('user.id') != currentUser.get('id') &&
-      this.get('opinions').every(comment => comment.get('user.id') != currentUser.get('id'));
+  canSendOpinion: computed('currentUserOpinion', function() {
+    const currentUser = this.get('diGlobal.currentUser');
+    return this.get('user.id') != currentUser.get('id');
   })
 });
 

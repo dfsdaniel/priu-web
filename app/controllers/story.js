@@ -25,18 +25,35 @@ export default Controller.extend({
 	btWireframesDisabled: computed.empty('model.wireframes'),
 
 	addCommentOpinion(comment, type) {
-		const commentOpinion = this.store.createRecord('story-comment-opinion', {
-      user: this.get('currentUser'),
-      type: type,
-      dateTime: moment().format()
-    });
+		if (comment.get('canSendOpinion')) {
+			const currentUserOpinion = comment.get('currentUserOpinion');
 
-    commentOpinion.save().then(opinion => {
-      comment.get('opinions').pushObject(opinion);
-      comment.save().then(()=> {
-      	this.set('model', this.get('model'));
-      });
-    });
+			if (currentUserOpinion) {
+				if (currentUserOpinion.get('type') == type) {
+					comment.get('opinions').removeObject(currentUserOpinion);
+					comment.save();
+
+					currentUserOpinion.deleteRecord();
+					currentUserOpinion.save();
+				} else {
+					currentUserOpinion.set('type', type);
+					currentUserOpinion.save();
+				}
+			} else {
+				const commentOpinion = this.store.createRecord('story-comment-opinion', {
+					user: this.get('currentUser'),
+					type: type,
+					dateTime: moment().format()
+				});
+
+				commentOpinion.save().then(opinion => {
+					comment.get('opinions').pushObject(opinion);
+					comment.save().then(()=> {
+						this.set('model', this.get('model'));
+					});
+				});
+			}
+		}
 	},
 
 	actions: {
