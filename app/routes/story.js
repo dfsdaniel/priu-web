@@ -1,13 +1,9 @@
 import Route from '@ember/routing/route';
 import { resolve } from 'rsvp';
 import { all } from 'rsvp';
+import AuthMixin from 'priu-web/mixins/auth-route';
 
-export default Route.extend({
-	beforeModel: function() {
-    if (!this.get('userSession.isAuthenticated')) {
-      this.transitionTo('login');
-    }
-  },
+export default Route.extend(AuthMixin, {
 
   model(params) {
     return this.store.findRecord('story', params.story_id).then(story => {

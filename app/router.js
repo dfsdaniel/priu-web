@@ -7,6 +7,7 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('dashboard', {path: '/'});
 	this.route('story', {path: '/story/:story_id'});
 	this.route('login');
 });

@@ -9,23 +9,22 @@
     <textarea class="form-control" rows="5">{{model.description}}</textarea>
 
     <div class="story-button-options mt-2" role="group">
-      {{modal-button title="Mais detalhes" target="#detailsModal" disabled=btDetailsDisabled}}
       {{modal-button title="Critérios de aceitação" target="#acceptanceModal" disabled=btAcceptanceDisabled}}
       {{modal-button title="Wireframes" target="#wireframesModal" disabled=btWireframesDisabled}}
     </div>
 
     {{#if model.isVoted}}
-      <div class="already-vote-alert alert alert-info mt-2 mb-0">
-        <strong>Parabéns!</strong> Você já votou nesta estória!
+      <div class="already-vote-alert alert alert-success mt-2 mb-0">
+        <strong>Parabéns!</strong> Você votou nesta estória!
       </div>
     {{/if}}
 
     {{#if currentUser.isPO}}
-      {{story-criteria text="É muito importante para a sprint?" value=benefit}}
-      {{story-criteria text="Vai fazer muita falta se não existir?" value=penalty}}
+      {{story-criteria text="Quanto valor esta estória traz para os usuários?" value=benefit}}
+      {{story-criteria text="Esta estória vai fazer muita falta se não existir nesta sprint?" value=penalty}}
     {{else}}
-      {{story-criteria text="É muito trabalhosa e difícil ser feita?" value=cost}}
-      {{story-criteria text="Existe um alto risco de não ser concluída a tempo?" value=risk}}
+      {{story-criteria text="Esta estória é muito trabalhosa, difícil ou complexa de ser feita?" value=cost}}
+      {{story-criteria text="Existe um alto risco desta estória não ser concluída até o final da sprint?" value=risk}}
     {{/if}}
 
     <button type="button" class="btn btn-primary mt-2 mx-auto icon-button" {{action "saveVote"}}>{{priu-icon name="save"}}Salvar</button>

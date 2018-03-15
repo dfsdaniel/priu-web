@@ -20,7 +20,6 @@ export default Controller.extend({
 	cost: computed.alias('userVote.cost'),
 	risk: computed.alias('userVote.risk'),
 
-	btDetailsDisabled: computed.empty('model.details'),
 	btAcceptanceDisabled: computed.empty('model.acceptance'),
 	btWireframesDisabled: computed.empty('model.wireframes'),
 
@@ -61,17 +60,20 @@ export default Controller.extend({
 			const story = this.get('model');
 			const userVote = this.get('userVote');
 
-			userVote.setProperties({
-				story,
-				user: this.get('currentUser'),
-				dateTime: moment().format()
-			});
+			if (userVote.get('isNew')) {
+				userVote.setProperties({
+					story,
+					user: this.get('currentUser'),
+					dateTime: moment().format()
+				});
 
-			userVote.save().then(userVote => {
-				story.get('votes').pushObject(userVote);
-				story.save();
-			});
-			this.send('refreshAppRoute');
+				userVote.save().then(userVote => {
+					story.get('votes').pushObject(userVote);
+					story.save();
+				});
+			} else {
+				userVote.save();
+			}
 		},
 
 		saveComment(commentText) {
