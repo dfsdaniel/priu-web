@@ -5,6 +5,7 @@ export default Controller.extend({
 
   currentUser: alias('diGlobal.currentUser'),
   allStories: alias('diGlobal.allStories'),
+  currentSprint: alias('diGlobal.currentSprint'),
 
   actions: {
     onSignOut() {

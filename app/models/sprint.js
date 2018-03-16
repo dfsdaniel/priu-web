@@ -5,8 +5,6 @@ const Sprint = DS.Model.extend({
   startDate: DS.attr('string'),
   endDate: DS.attr('string'),
   isCurrent: DS.attr('boolean'),
-
-  stories: DS.hasMany('story', {async: true, inverse: null})
 });
 
 export default Sprint;

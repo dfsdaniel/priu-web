@@ -1,18 +1,11 @@
-.stories-progress { 
-	text-align: left;
-
-	small {
-		display: block;
-		margin-top: 10px;
-		margin-bottom: 10px;
-	}
-	
-	.story-container {	
+.stories-progress {
+	.story-container {
 		padding-bottom: 15px;
 		list-style: none;
 		flex-flow: row wrap;
 		width: 100%;
 		display: flex;
+		justify-content: center;
 	}
 
 	.story-p {
@@ -21,7 +14,11 @@
 		font-size: 12px;
 		font-weight: bold;
 		padding-top: 1px;
-		margin: 0 0 5px 5px;
+
+		&:not(:first-child) {
+			margin-left: 5px;
+		}
+
 		width: 25px;
 		height: 25px;
 		border: 3px solid black;

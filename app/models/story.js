@@ -2,6 +2,8 @@ import DS from 'ember-data';
 import { computed } from '@ember/object';
 
 const Story = DS.Model.extend({
+  sprint: DS.belongsTo('sprint'),
+
   title: DS.attr('string'),
   description: DS.attr('string'),
   acceptance: DS.attr('string'),

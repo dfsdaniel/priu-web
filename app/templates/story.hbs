@@ -1,4 +1,10 @@
 <div class="col-md text-center">
+  {{#if (not-eq model.sprint.id currentSprint.id)}}
+    <div class="alert alert-danger">
+      <strong>ATENÇÃO!</strong> Esta estória não está na sprint atual!
+    </div>
+  {{/if}}
+
   <h2 class="text-dark">[#{{model.id}}] {{model.title}}</h2>
   <textarea class="form-control" rows="5">{{model.description}}</textarea>
 

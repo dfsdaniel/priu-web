@@ -7,6 +7,7 @@ import { StoryCommentsConstants } from 'priu-web/utils/constants';
 export default Controller.extend({
 
 	currentUser: alias('diGlobal.currentUser'),
+	currentSprint: alias('diGlobal.currentSprint'),
 
 	userVote: computed('model', function() {
 		const userVote = this.get('model.votes').filter(vote => vote.get('user.id') == this.get('currentUser.id')).get('firstObject');

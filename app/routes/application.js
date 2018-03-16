@@ -21,10 +21,21 @@ export default Route.extend({
 
     return hash({
       user: this.store.find('user', currentUserId),
-      allStories: this.store.findAll('story')
+      allStories: this.store.findAll('story'),
+      allSprints: this.store.findAll('sprint')
     }).then(result => {
       const allVotes = [];
-      result.allStories.forEach(story => {
+
+      const currentStrintList = result.allSprints.filter(sp => sp.get('isCurrent'));
+      let currentSprint = null;
+      if (currentStrintList.length) {
+        currentSprint = currentStrintList.get('firstObject');
+      } else {
+        currentSprint = result.allSprints.get('firstObject');
+      }
+      const sprintStories = result.allStories.filter(st => st.get('sprint.id') == currentSprint.get('id'));
+
+      sprintStories.forEach(story => {
         allVotes.push(story.get('votes'));
       });
       return all(allVotes).then(votes => {
@@ -35,7 +46,8 @@ export default Route.extend({
         return all(allUsers).then(() => {
           return {
             user: result.user,
-            allStories: result.allStories
+            allStories: sprintStories,
+            currentSprint: currentSprint
           };
         });
       });
@@ -46,6 +58,7 @@ export default Route.extend({
     if (model) {
       this.set('diGlobal.currentUser', model.user);
       this.set('diGlobal.allStories', model.allStories);
+      this.set('diGlobal.currentSprint', model.currentSprint);
     }
   },
 
