@@ -15,7 +15,6 @@ export default Route.extend({
 
   model() {
     const currentUserId = this.get('diGlobal.currentUserId');
-    
     if (!currentUserId) {
       return null;
     }
@@ -73,7 +72,7 @@ export default Route.extend({
       this.get('userSession').close().then(() => {
         this.set('diGlobal.currentUserId', null);
         this.send('refreshAppRoute');
-      });      
+      });
     }
   }
 });

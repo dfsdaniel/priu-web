@@ -8,8 +8,6 @@ export default Controller.extend({
 
 	currentUser: alias('diGlobal.currentUser'),
 
-	allStories: alias('diGlobal.allStories'),
-
 	userVote: computed('model', function() {
 		const userVote = this.get('model.votes').filter(vote => vote.get('user.id') == this.get('currentUser.id')).get('firstObject');
 		return userVote ? userVote : this.store.createRecord('story-vote');

@@ -1,39 +1,26 @@
-<div class="row">
-    <div class="col-md-9">
-      <h5>Sprints</h5>
 
-      <div class="card sprint-list">
-        <ul class="list-group list-group-flush">
-          {{#each model.sprints as |sprint|}}
-            <li class="list-group-item">[#{{sprint.id}}] {{sprint.goal}}</li>
-          {{/each}}
-        </ul>
-      </div>
+<div class="col-md">
+  <h5>Sprints</h5>
 
-      <h5>Estórias</h5>
+  <div class="card sprint-list">
+    <ul class="list-group list-group-flush">
+      {{#each model.sprints as |sprint|}}
+        <li class="list-group-item">[#{{sprint.id}}] {{sprint.goal}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
 
-      <div class="card story-list">
-        <ul class="list-group list-group-flush">
-          {{#each allStories as |story|}}
-            <li class="list-group-item">
-              {{#link-to "story" story.id}}{{story.title}}{{/link-to}}
-            </li>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
+<div class="col-md-3">
+  <h5>Ranking</h5>
 
-    <div class="col-md-3">
-      <h5>Ranking</h5>
-
-      <div class="card leaderboard">
-        <ul class="list-group list-group-flush">
-          {{#each model.users as |user|}}
-            <li class="list-group-item">
-              {{user.name}} <span class="badge role-{{user.role}}">{{user.role}}</span>
-            </li>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
+  <div class="card leaderboard">
+    <ul class="list-group list-group-flush">
+      {{#each model.users as |user|}}
+        <li class="list-group-item">
+          {{user.name}} <span class="badge role-{{user.role}}">{{user.role}}</span>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
 </div>

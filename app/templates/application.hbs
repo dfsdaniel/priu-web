@@ -10,9 +10,6 @@
           <li class="nav-item">
             {{#link-to "dashboard" class="nav-link"}}Visão Geral{{/link-to}}
           </li>
-          <li class="nav-item">
-            {{#link-to "story" "1" class="nav-link"}}Estórias{{/link-to}}
-          </li>
           <li class="nav-item ">
             <a class="nav-link" href="#">Instruções</a>
           </li>
@@ -29,5 +26,12 @@
 </nav>
 
 <div class="container pt-2">
-	{{outlet}}
+  <div class="row">
+    <div class="col-md-2 text-center">
+      {{user-ranking ranking=currentUser.ranking}}
+      {{stories-progress stories=model.allStories currentUser=currentUser}}
+    </div>
+
+    {{outlet}}
+  </div>
 </div>
