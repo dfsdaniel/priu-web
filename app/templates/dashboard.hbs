@@ -6,11 +6,15 @@
     <ul class="list-group list-group-flush">
       {{#each model.sprints as |sprint|}}
         <li class="list-group-item">
-          <span class="badge badge-secondary">#{{sprint.id}}</span> {{sprint.goal}} {{#if sprint.isCurrent}}(atual){{/if}}
+          <div>
+            <span class="badge badge-secondary">#{{sprint.id}}</span> {{sprint.goal}} {{#if sprint.isCurrent}}(atual){{/if}}
+          </div>
 
-          {{#unless sprint.isCurrent}}
+          {{#if sprint.isCurrent}}
+            {{priu-icon name="check" classNames="float-right"}}
+          {{else}}
             <button type="button" class="btn btn-primary btn-sm float-right" {{action "selectSprint" sprint}}>Selecionar</button>
-          {{/unless}}
+          {{/if}}
         </li>
       {{/each}}
     </ul>
@@ -18,7 +22,7 @@
 </div>
 
 <div class="col-md-3">
-  <h5>Ranking</h5>
+  <h5>Ranking geral</h5>
 
   <div class="card leaderboard">
     <ul class="list-group list-group-flush">

@@ -1,0 +1,15 @@
+.sprint-list {
+  .priu-icon {
+    width: 20px;
+    height: 20px;
+    fill: $bootstrap-green;
+    margin-top: 3px;
+  }
+
+  .list-group-item {
+    display: flex;
+    height: 56px;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
