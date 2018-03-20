@@ -20,7 +20,7 @@ const StoryComment = DS.Model.extend({
     return likes.get('length');
   }),
 
-  currentUserOpinion: computed('opinions.[]', function() {
+  currentUserOpinion: computed('opinions.[]', 'diGlobal.currentUser.id', function() {
     const currentUser = this.get('diGlobal.currentUser');
     const opinions = this.get('opinions').filter(comment => comment.get('user.id') == currentUser.get('id'));
     return opinions.length ? opinions.get('firstObject') : null;

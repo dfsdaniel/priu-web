@@ -9,7 +9,7 @@ export default Controller.extend({
 	currentUser: alias('diGlobal.currentUser'),
 	currentSprint: alias('diGlobal.currentSprint'),
 
-	userVote: computed('model', function() {
+	userVote: computed('model', 'currentUser.id', function() {
 		const userVote = this.get('model.votes').filter(vote => vote.get('user.id') == this.get('currentUser.id')).get('firstObject');
 		return userVote ? userVote : this.store.createRecord('story-vote');
 	}),
@@ -29,13 +29,13 @@ export default Controller.extend({
 			if (currentUserOpinion) {
 				if (currentUserOpinion.get('type') == type) {
 					comment.get('opinions').removeObject(currentUserOpinion);
-					comment.save();
-
-					currentUserOpinion.deleteRecord();
-					currentUserOpinion.save();
+					return comment.save().then(() => {
+						currentUserOpinion.deleteRecord();
+						return currentUserOpinion.save();
+					});
 				} else {
 					currentUserOpinion.set('type', type);
-					currentUserOpinion.save();
+					return currentUserOpinion.save();
 				}
 			} else {
 				const commentOpinion = this.store.createRecord('story-comment-opinion', {
@@ -44,9 +44,9 @@ export default Controller.extend({
 					dateTime: moment().format()
 				});
 
-				commentOpinion.save().then(opinion => {
+				return commentOpinion.save().then(opinion => {
 					comment.get('opinions').pushObject(opinion);
-					comment.save().then(()=> {
+					return comment.save().then(()=> {
 						this.set('model', this.get('model'));
 					});
 				});
@@ -88,12 +88,12 @@ export default Controller.extend({
 			});
 		},
 
-		addCommentLike(comment) {
-			this.addCommentOpinion(comment, StoryCommentsConstants.OPINION_TYPES.LIKE);
+		addCommentLike(comment, callback) {
+			this.addCommentOpinion(comment, StoryCommentsConstants.OPINION_TYPES.LIKE).then(callback);
 		},
 
-		addCommentDislike(comment) {
-			this.addCommentOpinion(comment, StoryCommentsConstants.OPINION_TYPES.DISLIKE);
+		addCommentDislike(comment, callback) {
+			this.addCommentOpinion(comment, StoryCommentsConstants.OPINION_TYPES.DISLIKE).then(callback);
 		}
 	}
 });

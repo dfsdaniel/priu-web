@@ -1,0 +1,15 @@
+<div class="col-md-2">
+  {{priu-icon name="user-avatar"}}
+</div>
+<div class="col-md content-container">
+  <div class="user-name">{{comment.user.name}} <span class="badge role-{{comment.user.role}}">{{comment.user.role}}</span></div>
+  <div class="comment-content">
+    {{comment.content}}
+  </div>
+  <small>{{moment-from-now comment.dateTime}}</small>
+
+  <div class="opinion-buttons">
+    <button type="button" class="btn btn-outline-success btn-sm bt-like icon-button {{if (eq comment.currentUserOpinion.type 'LIKE') 'active'}} {{unless comment.canSendOpinion 'no-action'}} {{unless opinionButtonEnabled 'loading'}}" {{action "likeComment" comment}}>{{priu-icon name="like"}}{{comment.likesCount}}</button>
+    <button type="button" class="btn btn-outline-danger btn-sm bt-dislike icon-button {{if (eq comment.currentUserOpinion.type 'DISLIKE') 'active'}} {{unless comment.canSendOpinion 'no-action'}} {{unless opinionButtonEnabled 'loading'}}" {{action "dislikeComment" comment}}>{{priu-icon name="dislike"}}{{comment.dislikesCount}}</button>
+  </div>
+</div>

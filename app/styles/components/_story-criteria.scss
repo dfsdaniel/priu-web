@@ -1,8 +1,43 @@
 .story-criteria {
+  .card-body {
+    padding: 0;
+  }
+
+  .row {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
 	.criteria-icon {
 		display: flex;
 		align-items: center;
+
+    .priu-icon {
+      margin-right: auto;
+      margin-left: auto;
+      fill: white;
+    }
 	}
+
+  .verySatisfied {
+    background-color: $bootstrap-green;
+  }
+
+  .veryDissatisfied {
+    background-color: $dark-red;
+  }
+
+  .neutral {
+    background-color: $light-gray;
+  }
+
+  .satisfied {
+    background-color: $light-green;
+  }
+
+  .dissatisfied {
+    background-color: $bootstrap-red;
+  }
 }
 
 .slider {

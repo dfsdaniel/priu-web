@@ -20,7 +20,7 @@
   {{/if}}
 
   {{#if currentUser.isPO}}
-    {{story-criteria text="Quanto valor esta estória traz para os usuários?" value=benefit}}
+    {{story-criteria text="Quando estiver pronta, quanto de valor esta estória trará para os usuários?" invertIcons=true value=benefit}}
     {{story-criteria text="Esta estória vai fazer muita falta se não existir nesta sprint?" value=penalty}}
   {{else}}
     {{story-criteria text="Esta estória é muito trabalhosa, difícil ou complexa de ser feita?" value=cost}}

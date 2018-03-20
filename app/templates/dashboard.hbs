@@ -19,6 +19,24 @@
       {{/each}}
     </ul>
   </div>
+
+  <h5 class="mt-4">Estórias da sprint #{{currentSprint.id}}</h5>
+
+  <div class="card story-list">
+    <ul class="list-group list-group-flush">
+      {{#each allStories as |story|}}
+        <li class="list-group-item">
+          <div>
+            <span class="badge badge-secondary">#{{story.id}}</span> {{#link-to "story" story.id}}{{story.title}}{{/link-to}}
+          </div>
+
+          {{#if story.isVoted}}
+            {{priu-icon name="check" classNames="float-right"}}
+          {{/if}}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
 </div>
 
 <div class="col-md-3">

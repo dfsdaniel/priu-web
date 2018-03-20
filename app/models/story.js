@@ -12,7 +12,7 @@ const Story = DS.Model.extend({
   votes: DS.hasMany('story-vote', {async: true, inverse: null}),
   comments: DS.hasMany('story-comment', {async: true, inverse: null}),
 
-  isVoted: computed('votes', function() {
+  isVoted: computed('votes', 'diGlobal.currentUser.id', function() {
     return this.get('votes').any(vote => vote.get('user.id') == this.get('diGlobal.currentUser.id'))
   })
 });

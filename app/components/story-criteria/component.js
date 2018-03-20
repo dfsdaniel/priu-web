@@ -10,16 +10,53 @@ export default Component.extend({
 
     invertIcons: false,
 
-    leftIcon: computed('invertIcons', function() {
-      return this.get('invertIcons') ? 'user-dislike' : 'user-like';
-    }),
-    rightIcon: computed('invertIcons', function() {
-      return this.get('invertIcons') ? 'user-like' : 'user-dislike';
-    }),
-
     changeValue: observer('value', function() {
       // Quando o usuário trocar de estória precisa mudar o valor dinamicamente do slider.
       this.$('#slider').slider('setValue', this.get('value'));
+    }),
+
+    iconName: computed('value', function() {
+      const invertIcons = this.get('invertIcons');
+
+      if (invertIcons) {
+        switch (this.get('value')) {
+          case 1:
+          case 2:
+            return 'veryDissatisfied';
+          case 3:
+          case 4:
+            return 'dissatisfied';
+          case 5:
+            return 'neutral';
+          case 6:
+          case 7:
+            return 'satisfied';
+          case 8:
+          case 9:
+            return 'verySatisfied';
+          default:
+            return 'neutral';
+        }
+      } else {
+        switch (this.get('value')) {
+          case 1:
+          case 2:
+            return 'verySatisfied';
+          case 3:
+          case 4:
+            return 'satisfied';
+          case 5:
+            return 'neutral';
+          case 6:
+          case 7:
+            return 'dissatisfied';
+          case 8:
+          case 9:
+            return 'veryDissatisfied';
+          default:
+            return 'neutral';
+        }
+      }
     }),
 
     didInsertElement() {

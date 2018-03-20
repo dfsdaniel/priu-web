@@ -14,6 +14,10 @@ export default Component.extend({
     }).reverse();
   }),
 
+  commentsLastIndex: computed('comments', function() {
+    return this.get('comments.length') - 1;
+  }),
+
   didInsertElement() {
     const $textArea = this.$('textarea');
     $textArea.keyup((event) => {
