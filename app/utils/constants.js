@@ -12,4 +12,11 @@ const StoryCommentsConstants = {
   }
 }
 
-export { UserConstants, StoryCommentsConstants };
+const StoryWeights = {
+  BENEFIT: 2,
+  PENALTY: 1,
+  COST: 1,
+  RISK: 0.5
+}
+
+export { UserConstants, StoryCommentsConstants, StoryWeights };
