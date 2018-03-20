@@ -39,9 +39,9 @@ export default Route.extend({
         allVotes.push(story.get('votes'));
       });
       return all(allVotes).then(votes => {
-        const allUsers = [];
+        let allUsers = [];
         votes.forEach(votesByStory => {
-          allUsers.push(votesByStory.mapBy('user'));
+          allUsers = allUsers.concat(votesByStory.toArray().mapBy('user'));
         });
         return all(allUsers).then(() => {
           return {

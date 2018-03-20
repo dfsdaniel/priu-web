@@ -19,7 +19,7 @@ const Story = DS.Model.extend({
 
   averageVotes: computed('votes.[]', function() {
     const allVotes = this.get('votes');
-    const qtdVotes = allVotes.get('length');
+    const qtdVotes = allVotes.get('length') / 2;
     const storyVotes = {
       benefit: 0,
       penalty: 0,
@@ -30,10 +30,10 @@ const Story = DS.Model.extend({
     allVotes.forEach(vote => {
       const userRole = vote.get('user.role');
 
-      storyVotes['benefit'] = storyVotes['benefit'] + (userRole == UserConstants.ROLES.PO) ? vote.get('benefit') : 0;
-      storyVotes['penalty'] = storyVotes['penalty'] + (userRole == UserConstants.ROLES.PO) ? vote.get('penalty') : 0;
-      storyVotes['risk'] = storyVotes['risk'] + (userRole == UserConstants.ROLES.DEV) ? vote.get('risk') : 0;
-      storyVotes['cost'] = storyVotes['cost'] + (userRole == UserConstants.ROLES.DEV) ? vote.get('cost') : 0;
+      storyVotes['benefit'] = storyVotes['benefit'] + ((userRole == UserConstants.ROLES.PO) ? vote.get('benefit') : 0);
+      storyVotes['penalty'] = storyVotes['penalty'] + ((userRole == UserConstants.ROLES.PO) ? vote.get('penalty') : 0);
+      storyVotes['risk'] = storyVotes['risk'] + ((userRole == UserConstants.ROLES.DEV) ? vote.get('risk') : 0);
+      storyVotes['cost'] = storyVotes['cost'] + ((userRole == UserConstants.ROLES.DEV) ? vote.get('cost') : 0);
     });
 
     return {
