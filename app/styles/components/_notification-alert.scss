@@ -1,0 +1,12 @@
+.notification {
+  position: absolute;
+  z-index: 9999;
+  top: 76px;
+  left: 0;
+  right: 0;
+  text-align: center;
+
+  &.alert {
+    border-radius: 0;
+  }
+}

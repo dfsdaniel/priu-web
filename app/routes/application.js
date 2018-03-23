@@ -22,7 +22,8 @@ export default Route.extend({
     return hash({
       user: this.store.find('user', currentUserId),
       allStories: this.store.findAll('story'),
-      allSprints: this.store.findAll('sprint')
+      allSprints: this.store.findAll('sprint'),
+      allActions: this.store.findAll('user-action')
     }).then(result => {
       const allVotes = [];
 
@@ -47,7 +48,8 @@ export default Route.extend({
           return {
             user: result.user,
             allStories: sprintStories,
-            currentSprint: currentSprint
+            currentSprint: currentSprint,
+            allActions: result.allActions
           };
         });
       });
@@ -76,6 +78,8 @@ export default Route.extend({
         this.set('diGlobal.currentUserId', data.currentUser.uid);
         onSuccess();
         this.send('refreshAppRoute');
+
+        this.get('diGame').regLogin();
       }).catch(error => {
         onError(error);
       });

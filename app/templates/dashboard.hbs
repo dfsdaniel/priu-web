@@ -20,7 +20,7 @@
     </ul>
   </div>
 
-  <h5 class="mt-4">Estórias priorizadas da sprint #{{currentSprint.id}}</h5>
+  <h5 class="mt-4">Priorização da sprint #{{currentSprint.id}}</h5>
 
   <div class="card story-list">
     <ul class="list-group list-group-flush">
@@ -40,13 +40,14 @@
 </div>
 
 <div class="col-md-3">
-  <h5>Ranking geral</h5>
+  <h5 class="leaderboard-title">{{priu-icon name="trophy" width="31" height="31" classNames="p0"}} Ranking geral</h5>
 
-  <div class="card leaderboard">
+  <div class="card main-leaderboard">
     <ul class="list-group list-group-flush">
-      {{#each model.users as |user|}}
-        <li class="list-group-item">
-          {{user.name}} <span class="badge role-{{user.role}}">{{user.role}}</span>
+      {{#each model.users as |user index|}}
+        <li class="list-group-item ranking-{{index}}">
+          <div class="position">{{priu-icon name=(concat 'ranking-' index)}}</div>
+          <div class="user-name">{{user.name}}</div>
         </li>
       {{/each}}
     </ul>

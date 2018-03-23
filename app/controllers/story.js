@@ -69,6 +69,8 @@ export default Controller.extend({
 				userVote.save().then(userVote => {
 					story.get('votes').pushObject(userVote);
 					story.save();
+
+					this.get('diGame').regStoryVote();
 				});
 			} else {
 				userVote.save();
@@ -85,6 +87,8 @@ export default Controller.extend({
 			newComment.save().then(newComment => {
 				story.get('comments').pushObject(newComment);
 				story.save();
+
+				this.get('diGame').regAddComment();
 			});
 		},
 

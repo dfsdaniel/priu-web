@@ -8,7 +8,7 @@ export default Controller.extend({
   allStories: alias('diGlobal.allStories'),
   currentSprint: alias('diGlobal.currentSprint'),
 
-  rankedStories: computed('allStories', function() {
+  getPriority() {
     const allStories = this.get('allStories');
 
     let totalValueSum = 0;
@@ -21,6 +21,11 @@ export default Controller.extend({
       costSum += story.get('averageVotes').cost;
     });
 
+    // Ajuste para quando não houver nenhum voto ainda para a estória
+    totalValueSum = totalValueSum == 0 ? 1 : totalValueSum;
+    riskSum = riskSum == 0 ? 1 : riskSum;
+    costSum = costSum == 0 ? 1 : costSum;
+
     const rankedStories = allStories.map((story) => {
       const totalValue = story.get('averageVotes').benefit * StoryWeights.BENEFIT
         + story.get('averageVotes').penalty * StoryWeights.PENALTY;
@@ -29,14 +34,25 @@ export default Controller.extend({
       const percentRisk = (story.get('averageVotes').risk * 100) / riskSum;
       const percentCost = (story.get('averageVotes').cost * 100) / costSum;
 
-      const priority = percentValue / ((percentCost * StoryWeights.COST) + (percentRisk * StoryWeights.RISK))
+
+      let auxPercents = ((percentCost * StoryWeights.COST) + (percentRisk * StoryWeights.RISK));
+      auxPercents = auxPercents == 0 ? 1 : auxPercents;
+
+      const priority = percentValue / auxPercents;
 
       return new ObjectProxy({
         content: story,
         priority: parseFloat(priority).toFixed(2)
       });
     });
-    return rankedStories.sortBy('priority:desc');
+
+    return rankedStories.sort((storyA, storyB) => {
+      return storyA.priority < storyB.priority;
+    });
+  },
+
+  rankedStories: computed('allStories.@each.averageVotes', function() {
+    return this.getPriority();
   }),
 
   actions: {

@@ -14,3 +14,44 @@
     justify-content: space-between;
   }
 }
+
+.leaderboard-title {
+  display: flex;
+  align-items: center;
+
+  .priu-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+  }
+}
+
+.main-leaderboard {
+  .ranking-0 {
+    background-color: $bootstrap-yellow;
+  }
+
+  .ranking-1 {
+    background-color: $light-gray;
+  }
+
+  .ranking-2 {
+    background-color: #8C7853;
+  }
+
+  .priu-icon {
+    width: 50px;
+    height: 50px;
+    fill: white;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .list-group-item {
+    text-align: center;
+    .user-name {
+      font-weight: bold;
+      color: white;
+    }
+  }
+}

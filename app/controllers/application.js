@@ -7,6 +7,10 @@ export default Controller.extend({
   allStories: alias('diGlobal.allStories'),
   currentSprint: alias('diGlobal.currentSprint'),
 
+  alertClass: alias('diGlobal.notification.alertClass'),
+  alertTitle: alias('diGlobal.notification.title'),
+  alertText: alias('diGlobal.notification.text'),
+
   actions: {
     onSignOut() {
       this.send('signOut');

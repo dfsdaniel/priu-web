@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 import { computed } from '@ember/object';
-import { UserConstants } from 'priu-web/utils/constants';
+import { UserRoles } from 'priu-web/utils/constants';
 
 const Story = DS.Model.extend({
   sprint: DS.belongsTo('sprint'),
@@ -17,9 +17,9 @@ const Story = DS.Model.extend({
     return this.get('votes').any(vote => vote.get('user.id') == this.get('diGlobal.currentUser.id'))
   }),
 
-  averageVotes: computed('votes.[]', function() {
+  averageVotes: computed('votes.@each.{benefit,penalty,risk,cost}', function() {
     const allVotes = this.get('votes');
-    const qtdVotes = allVotes.get('length') / 2;
+    let qtdVotes = allVotes.get('length') / 2;
     const storyVotes = {
       benefit: 0,
       penalty: 0,
@@ -30,11 +30,14 @@ const Story = DS.Model.extend({
     allVotes.forEach(vote => {
       const userRole = vote.get('user.role');
 
-      storyVotes['benefit'] = storyVotes['benefit'] + ((userRole == UserConstants.ROLES.PO) ? vote.get('benefit') : 0);
-      storyVotes['penalty'] = storyVotes['penalty'] + ((userRole == UserConstants.ROLES.PO) ? vote.get('penalty') : 0);
-      storyVotes['risk'] = storyVotes['risk'] + ((userRole == UserConstants.ROLES.DEV) ? vote.get('risk') : 0);
-      storyVotes['cost'] = storyVotes['cost'] + ((userRole == UserConstants.ROLES.DEV) ? vote.get('cost') : 0);
+      storyVotes['benefit'] = storyVotes['benefit'] + ((userRole == UserRoles.PO) ? vote.get('benefit') : 0);
+      storyVotes['penalty'] = storyVotes['penalty'] + ((userRole == UserRoles.PO) ? vote.get('penalty') : 0);
+      storyVotes['risk'] = storyVotes['risk'] + ((userRole == UserRoles.DEV) ? vote.get('risk') : 0);
+      storyVotes['cost'] = storyVotes['cost'] + ((userRole == UserRoles.DEV) ? vote.get('cost') : 0);
     });
+
+    // Ajuste para quando não houver nenhum voto ainda para a estória
+    qtdVotes = qtdVotes == 0 ? 1 : qtdVotes;
 
     return {
       benefit: storyVotes['benefit'] / qtdVotes,

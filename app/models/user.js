@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import { UserConstants } from 'priu-web/utils/constants';
+import { UserRoles } from 'priu-web/utils/constants';
 import { computed } from '@ember/object';
 
 const User = DS.Model.extend({
@@ -7,8 +7,8 @@ const User = DS.Model.extend({
   ranking: DS.attr('number'),
   role: DS.attr('string'),
 
-  isDEV: computed.equal('role', UserConstants.ROLES.DEV),
-  isPO: computed.equal('role', UserConstants.ROLES.PO),
+  isDEV: computed.equal('role', UserRoles.DEV),
+  isPO: computed.equal('role', UserRoles.PO),
 });
 
 export default User;
