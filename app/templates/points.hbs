@@ -1,0 +1,22 @@
+<div class="col-md">
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Atividade</th>
+      <th scope="col">Pontos</th>
+      <th scope="col">Quando</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model as |action|}}
+      <tr>
+        <th scope="row">{{action.actionFormatted}}</th>
+        <td>{{action.points}}</td>
+        <td>{{action.dateTimeFormatted}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+</div>
+
+

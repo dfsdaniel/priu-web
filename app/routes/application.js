@@ -1,9 +1,12 @@
 import Route from '@ember/routing/route';
 import { hash } from 'rsvp';
 import { all } from 'rsvp';
+import moment from 'moment';
 
 export default Route.extend({
   beforeModel: function() {
+    moment.locale('pt-br');
+
     return this.get('userSession').fetch()
     .then(() => {
       this.set('diGlobal.currentUserId', this.get('userSession.currentUser.uid'));
@@ -64,7 +67,7 @@ export default Route.extend({
       this.set('diGlobal.allUsers', model.allUsers);
       this.set('diGlobal.allStories', model.allStories);
       this.set('diGlobal.currentSprint', model.currentSprint);
-      this.set('diGlobal.allActions', model.allActions);
+      this.set('diGame.allActions', model.allActions);
     }
   },
 

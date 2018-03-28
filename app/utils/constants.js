@@ -5,34 +5,42 @@ const UserRoles = {
 
 const UserActions = {
   STORY_VOTE: {
+    label: 'Deu opinião na estória',
     value: 'STORY_VOTE',
     points: 80
   },
   ADD_COMMENT: {
+    label: 'Comentou na estória',
     value: 'ADD_COMMENT',
     points: 20
   },
   ADD_COMMENT_OPINION: {
+    label: 'Avaliou comentário da estória',
     value: 'ADD_COMMENT_OPINION',
     points: 5
   },
   RECEIVE_COMMENT_LIKE: {
+    label: 'Comentário bem avaliado',
     value: 'RECEIVE_COMMENT_LIKE',
     points: 5
   },
   RECEIVE_COMMENT_DISLIKE: {
+    label: 'Comentário mal avaliado',
     value: 'RECEIVE_COMMENT_DISLIKE',
     points: -10
   },
   VIEW_AC: {
+    label: 'Consultou critérios de aceitação da estória',
     value: 'VIEW_AC',
     points: 10
   },
   VIEW_WIREFRAMES: {
+    label: 'Consultou os wireframes da estória',
     value: 'VIEW_WIREFRAMES',
     points: 10
   },
   LOGIN: {
+    label: 'Efetou login no sistema',
     value: 'LOGIN',
     points: 2
   }

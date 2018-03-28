@@ -8,9 +8,10 @@ import moment from 'moment';
 export default Service.extend({
   isActive: true,
 
+  allActions: null,
+
   currentUser: alias('diGlobal.currentUser'),
   allUsers: alias('diGlobal.allUsers'),
-  allActions: alias('diGlobal.allActions'),
 
   getUserPoints(user) {
     const userActions = this.get('allActions').filter((userAction) => userAction.get('userReceived.id') == user.get('id'));

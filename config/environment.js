@@ -13,6 +13,10 @@ module.exports = function(environment) {
       sessionServiceName: 'userSession'
     },
 
+    moment: {
+      includeLocales: ['pt-br']
+    },
+
     modulePrefix: 'priu-web',
     environment,
     rootURL: '/',
