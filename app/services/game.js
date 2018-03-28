@@ -1,5 +1,5 @@
 import Service from '@ember/service';
-import { UserActions } from 'priu-web/utils/constants';
+import { UserActions, StoryCommentsConstants } from 'priu-web/utils/constants';
 import { alias } from '@ember/object/computed';
 import moment from 'moment';
 
@@ -10,7 +10,8 @@ export default Service.extend({
 
   createAction(type) {
     return this.get('diStore').createRecord('user-action', {
-      user: this.get('currentUser'),
+      userCreated: this.get('currentUser'),
+      userReceived: this.get('currentUser'),
       action: type.value,
       points: type.points,
       dateTime: moment().format()
@@ -50,4 +51,69 @@ export default Service.extend({
     const action = this.createAction(UserActions.VIEW_WIREFRAMES);
     action.save();
   },
+
+  deleteCommentOpinion(comment) {
+    this.get('diStore').findAll('user-action').then((actions) => {
+      const actionsForComment = actions.toArray().filter(action =>
+        action.get('context') == comment.get('id') && action.get('userCreated.id') == this.get('currentUser.id'));
+
+
+      let i = 0;
+
+      const deleteAction = () => {
+        if (i >= actionsForComment.length) { return; }
+
+        let action = actionsForComment[i];
+        action.destroyRecord().then(() => {
+          i++;
+          deleteAction();
+        });
+      };
+
+      deleteAction();
+    });
+  },
+
+  regCommentOpinion(comment, opinion) {
+    let actionReceived = null;
+
+    if (opinion.get('type') == StoryCommentsConstants.OPINION_TYPES.LIKE) {
+      actionReceived = this.createAction(UserActions.RECEIVE_COMMENT_LIKE);
+    } else {
+      actionReceived = this.createAction(UserActions.RECEIVE_COMMENT_DISLIKE);
+    }
+
+    this.get('diStore').findAll('user-action').then((actions) => {
+      const actionsForComment = actions.toArray().filter(action =>
+        action.get('context') == comment.get('id')
+        && action.get('userCreated.id') == this.get('currentUser.id')
+        && action.get('userReceived.id') != this.get('currentUser.id'));
+
+      const alreadyAction = actionsForComment.get('firstObject');
+      if (alreadyAction) {
+
+        alreadyAction.setProperties({
+          action: actionReceived.get('action'),
+          points: actionReceived.get('points'),
+          dateTime: moment().format()
+        });
+        alreadyAction.save();
+
+      } else {
+
+        actionReceived.setProperties({
+          userReceived: comment.get('user'),
+          context: comment.get('id')
+        });
+        actionReceived.save();
+
+        const action = this.createAction(UserActions.ADD_COMMENT_OPINION);
+        action.set('context', comment.get('id'));
+        action.save();
+
+        const globalService = this.get('diGlobal');
+        globalService.notificationSuccess('Obrigado!', `Você ganhou ${action.get('points')} pontos por avaliar este comentário!`);
+      }
+    });
+  }
 });

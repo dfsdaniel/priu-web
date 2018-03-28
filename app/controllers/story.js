@@ -31,11 +31,15 @@ export default Controller.extend({
 					comment.get('opinions').removeObject(currentUserOpinion);
 					return comment.save().then(() => {
 						currentUserOpinion.deleteRecord();
-						return currentUserOpinion.save();
+						return currentUserOpinion.save().then(() => {
+							this.get('diGame').deleteCommentOpinion(comment);
+						});
 					});
 				} else {
 					currentUserOpinion.set('type', type);
-					return currentUserOpinion.save();
+					return currentUserOpinion.save().then(() => {
+						this.get('diGame').regCommentOpinion(comment, currentUserOpinion);
+					});
 				}
 			} else {
 				const commentOpinion = this.store.createRecord('story-comment-opinion', {
@@ -46,8 +50,10 @@ export default Controller.extend({
 
 				return commentOpinion.save().then(opinion => {
 					comment.get('opinions').pushObject(opinion);
-					return comment.save().then(()=> {
+					return comment.save().then(() => {
 						this.set('model', this.get('model'));
+
+						this.get('diGame').regCommentOpinion(comment, opinion);
 					});
 				});
 			}

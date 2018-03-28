@@ -6,11 +6,15 @@ const UserRoles = {
 const UserActions = {
   STORY_VOTE: {
     value: 'STORY_VOTE',
-    points: 100
+    points: 80
   },
   ADD_COMMENT: {
     value: 'ADD_COMMENT',
     points: 20
+  },
+  ADD_COMMENT_OPINION: {
+    value: 'ADD_COMMENT_OPINION',
+    points: 5
   },
   RECEIVE_COMMENT_LIKE: {
     value: 'RECEIVE_COMMENT_LIKE',
