@@ -44,10 +44,20 @@
 
   <div class="card main-leaderboard">
     <ul class="list-group list-group-flush">
-      {{#each model.users as |user index|}}
+      {{#each top3 as |user index|}}
         <li class="list-group-item ranking-{{index}}">
           <div class="position">{{priu-icon name=(concat 'ranking-' index)}}</div>
-          <div class="user-name">{{user.name}}</div>
+          <div class="user-name">{{user.ranking}}º {{user.name}} ({{user.points}})</div>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+
+  <div class="card leaderboard mt-2">
+    <ul class="list-group list-group-flush">
+      {{#each restBoard as |user index|}}
+        <li class="list-group-item">
+          <div class="user-name">{{user.ranking}}º {{user.name}} ({{user.points}})</div>
         </li>
       {{/each}}
     </ul>

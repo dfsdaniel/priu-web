@@ -5,7 +5,7 @@ const UserAction = DS.Model.extend({
     userReceived: DS.belongsTo('user'),
 
     action: DS.attr('string'),
-    points: DS.attr('string'),
+    points: DS.attr('number'),
     dateTime: DS.attr('string'),
 
     context: DS.attr('string')

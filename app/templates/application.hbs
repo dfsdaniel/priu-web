@@ -29,7 +29,7 @@
   {{#if userSession.isAuthenticated}}
     <div class="row">
       <div class="col-md-2 text-center">
-        {{user-ranking ranking=currentUser.ranking}}
+        {{user-ranking ranking=currentUserRanking points=currentUserPoints}}
         {{current-sprint currentSprint=currentSprint}}
         {{stories-progress stories=model.allStories currentUser=currentUser}}
       </div>

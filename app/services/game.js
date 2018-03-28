@@ -1,12 +1,37 @@
 import Service from '@ember/service';
 import { UserActions, StoryCommentsConstants } from 'priu-web/utils/constants';
+import { computed } from '@ember/object';
 import { alias } from '@ember/object/computed';
+import ObjectProxy from '@ember/object/proxy'
 import moment from 'moment';
 
 export default Service.extend({
   isActive: true,
 
   currentUser: alias('diGlobal.currentUser'),
+  allUsers: alias('diGlobal.allUsers'),
+  allActions: alias('diGlobal.allActions'),
+
+  getUserPoints(user) {
+    const userActions = this.get('allActions').filter((userAction) => userAction.get('userReceived.id') == user.get('id'));
+    return userActions.reduce((acc, userAction) => acc + userAction.get('points'), 0);
+  },
+
+  rankedUsers: computed('allActions.[]', function() {
+    const rankedUsers = this.get('allUsers').map((user) => {
+      return new ObjectProxy({
+        content: user,
+        points: this.getUserPoints(user)
+      });
+    });
+
+    return rankedUsers.sort((userA, userB) => {
+      return userA.points < userB.points;
+    }).map((user, index) => {
+      user.set('ranking', index + 1);
+      return user;
+    });
+  }),
 
   createAction(type) {
     return this.get('diStore').createRecord('user-action', {

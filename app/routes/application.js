@@ -21,6 +21,7 @@ export default Route.extend({
 
     return hash({
       user: this.store.find('user', currentUserId),
+      allUsers: this.store.findAll('user'),
       allStories: this.store.findAll('story'),
       allSprints: this.store.findAll('sprint'),
       allActions: this.store.findAll('user-action')
@@ -47,6 +48,7 @@ export default Route.extend({
         return all(allUsers).then(() => {
           return {
             user: result.user,
+            allUsers: result.allUsers,
             allStories: sprintStories,
             currentSprint: currentSprint,
             allActions: result.allActions
@@ -59,8 +61,10 @@ export default Route.extend({
   afterModel(model) {
     if (model) {
       this.set('diGlobal.currentUser', model.user);
+      this.set('diGlobal.allUsers', model.allUsers);
       this.set('diGlobal.allStories', model.allStories);
       this.set('diGlobal.currentSprint', model.currentSprint);
+      this.set('diGlobal.allActions', model.allActions);
     }
   },
 
