@@ -63,7 +63,10 @@ export default Component.extend({
       const slider = this.$('#slider').slider({
         ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9],
         ticks_labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
-        ticks_snap_bounds: 25
+        ticks_snap_bounds: 25,
+        formatter: (value) => {
+          return 'xablau ' + value;
+        }
       });
       slider.on('change', (event) => {
         this.set('value', event.value.newValue);

@@ -34,7 +34,8 @@
       <div class="col-md-2 text-center">
         {{user-ranking ranking=currentUserRanking points=currentUserPoints}}
         {{current-sprint currentSprint=currentSprint}}
-        {{stories-progress stories=model.allStories currentUser=currentUser}}
+        {{stories-boxes stories=model.allStories currentUser=currentUser}}
+        {{stories-progress stories=model.allStories}}
       </div>
       {{outlet}}
     </div>

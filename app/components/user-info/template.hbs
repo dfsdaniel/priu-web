@@ -1,3 +1,5 @@
 {{priu-icon name="person"}}
-<span class="user-name">{{user.name}}</span>
-<small class="bt-signout badge badge-dark"><a href="#" {{action "signOut"}}>Sair</a></small>
+<div class="user-name">
+    <strong>{{user.name}}</strong> <span class="badge role-{{user.role}}">{{user.role}}</span>
+</div>
+<small class="bt-signout"><a href="#" {{action "signOut"}}>Sair</a></small>

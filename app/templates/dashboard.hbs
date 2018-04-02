@@ -7,7 +7,7 @@
       {{#each model.sprints as |sprint|}}
         <li class="list-group-item">
           <div>
-            <span class="badge badge-secondary">#{{sprint.id}}</span> {{sprint.goal}} {{#if sprint.isCurrent}}(atual){{/if}}
+            <span class="badge badge-secondary">#SP{{sprint.id}}</span> {{sprint.goal}} {{#if sprint.isCurrent}}(atual){{/if}}
           </div>
 
           {{#if sprint.isCurrent}}
@@ -20,7 +20,10 @@
     </ul>
   </div>
 
-  <h5 class="mt-4">Priorização da sprint #{{currentSprint.id}}</h5>
+  <div class="row story-list-header mt-4">
+    <div class="col-md"><h5>Priorização atual da sprint #SP{{currentSprint.id}}</h5></div>
+    <div class="col-md-2"><b>Prioridade</b></div>
+  </div>
 
   <div class="card story-list">
     <ul class="list-group list-group-flush">

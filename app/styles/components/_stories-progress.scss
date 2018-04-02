@@ -1,49 +1,30 @@
 .stories-progress {
-	.story-container {
-		padding-bottom: 15px;
-		list-style: none;
-		flex-flow: row wrap;
-		width: 100%;
-		display: flex;
-		justify-content: center;
-	}
+    .st-progress {
+        position: relative;
+        border: 1px solid;
+        border-radius: 10px;
+        font-weight: bold;
+        padding: 3px;
 
-	.story-p {
-		color: black;
-		text-align: center;
-		font-size: 12px;
-		font-weight: bold;
-		padding-top: 1px;
+        &.low {
+            border-color: $bootstrap-red;
+            color: $bootstrap-red;
+        }
 
+        &.middle {
+            border-color: $orange;
+            color: $orange;
+        }
 
-		margin-left: 4px;
-		margin-bottom: 4px;
+        &.high {
+            border-color: $bootstrap-green;
+            color: $bootstrap-green;
+        }
 
-
-		width: 25px;
-		height: 25px;
-		border: 3px solid black;
-		border-radius: 5px;
-
-		&.voted {
-			background-color: $bootstrap-green;
-			color: white;
-
-			&.active {
-				color: white;
-			}
-		}
-
-		&.active {
-			border-color: $bootstrap-blue;
-			color: $bootstrap-blue;
-		}
-
-		&:hover {
-			text-decoration: none;
-			background-color: $bootstrap-blue;
-			color: white;
-			border-color: $bootstrap-blue;
-		}
-	}
+        &.completed {
+            border-color: $bootstrap-green;
+            background-color: $bootstrap-green;
+            color: white;
+        }
+    }
 }
