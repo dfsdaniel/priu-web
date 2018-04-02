@@ -3,6 +3,7 @@ import { alias } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import moment from 'moment';
 import { StoryCommentsConstants } from 'priu-web/utils/constants';
+import { isEmpty } from '@ember/utils'
 
 export default Controller.extend({
 
@@ -85,6 +86,8 @@ export default Controller.extend({
 
 		saveComment(commentText) {
 			const story = this.get('model');
+			const isFirstComment = isEmpty(story.get('comments'));
+
 			const newComment = this.store.createRecord('story-comment', {
 				user: this.get('currentUser'),
 				content: commentText,
@@ -94,7 +97,11 @@ export default Controller.extend({
 				story.get('comments').pushObject(newComment);
 				story.save();
 
-				this.get('diGame').regAddComment();
+				if (isFirstComment) {
+					this.get('diGame').regFirstComment();
+				} else {
+					this.get('diGame').regAddComment();
+				}
 			});
 		},
 

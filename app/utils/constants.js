@@ -43,6 +43,11 @@ const UserActions = {
     label: 'Efetou login no sistema',
     value: 'LOGIN',
     points: 2
+  },
+  FIRST_COMMENT: {
+    label: 'Primeiro a comentar na estória',
+    value: 'FIRST_COMMENT',
+    points: 25
   }
 };
 

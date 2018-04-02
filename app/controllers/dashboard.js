@@ -7,8 +7,10 @@ import { StoryWeights } from 'priu-web/utils/constants';
 export default Controller.extend({
   allStories: alias('diGlobal.allStories'),
   currentSprint: alias('diGlobal.currentSprint'),
+
   allActions: alias('diGame.allActions'),
   rankedUsers: alias('diGame.rankedUsers'),
+  topCommenters: alias('diGame.topCommenters'),
 
   getPriority() {
     const allStories = this.get('allStories');
@@ -62,7 +64,7 @@ export default Controller.extend({
   }),
 
   restBoard: computed('rankedUsers', function() {
-    return this.get('rankedUsers').slice(3);
+    return this.get('rankedUsers').slice(3, 6);
   }),
 
   actions: {

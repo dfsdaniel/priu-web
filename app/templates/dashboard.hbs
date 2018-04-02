@@ -50,7 +50,7 @@
       {{#each top3 as |user index|}}
         <li class="list-group-item ranking-{{index}}">
           <div class="position">{{priu-icon name=(concat 'ranking-' index)}}</div>
-          <div class="user-name">{{user.ranking}}º {{user.name}} ({{user.points}})</div>
+          <div class="user-name">{{user.userRanking}}º {{user.name}} ({{user.points}})</div>
         </li>
       {{/each}}
     </ul>
@@ -60,7 +60,19 @@
     <ul class="list-group list-group-flush">
       {{#each restBoard as |user index|}}
         <li class="list-group-item">
-          <div class="user-name">{{user.ranking}}º {{user.name}} ({{user.points}})</div>
+          <div class="user-name">{{user.userRanking}}º {{user.name}} ({{user.points}})</div>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+
+  <h5 class="section-title mt-4">{{priu-icon name="comments"}} Quem mais comenta!</h5>
+
+  <div class="card top-commenters">
+    <ul class="list-group list-group-flush">
+      {{#each topCommenters as |user index|}}
+        <li class="list-group-item">
+            <div class="user-name"><strong>{{user.userRanking}}º</strong> {{user.name}} ({{user.qtd}})</div>
         </li>
       {{/each}}
     </ul>

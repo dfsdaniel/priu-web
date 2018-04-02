@@ -22,16 +22,37 @@ export default Service.extend({
     const rankedUsers = this.get('allUsers').map((user) => {
       return new ObjectProxy({
         content: user,
-        points: this.getUserPoints(user)
+        points: this.getUserPoints(user),
+        userRanking: 0
       });
     });
 
     return rankedUsers.sort((userA, userB) => {
       return userA.points < userB.points;
     }).map((user, index) => {
-      user.set('ranking', index + 1);
+      user.set('userRanking', index + 1);
       return user;
     });
+  }),
+
+  topCommenters: computed('allActions.[]', function() {
+    const userActions = this.get('allActions').filter((userAction) => userAction.get('action') == UserActions.ADD_COMMENT.value || userAction.get('action') == UserActions.FIRST_COMMENT.value);
+    const userMap = {};
+    userActions.forEach(action => {
+      const count = userMap[action.get('userReceived.id')] ? userMap[action.get('userReceived.id')].qtd : 0;
+      userMap[action.get('userReceived.id')] = new ObjectProxy ({
+        content: action.get('userReceived'),
+        qtd: count + 1,
+        userRanking: 0
+      });
+    });
+
+    return Object.values(userMap).sort((userA, userB) => {
+      return userA.qtd < userB.qtd;
+    }).map((user, index) => {
+      user.set('userRanking', index + 1);
+      return user;
+    });;
   }),
 
   createAction(type) {
@@ -50,6 +71,14 @@ export default Service.extend({
 
     const globalService = this.get('diGlobal');
     globalService.notificationSuccess('Login', `Você ganhou ${action.get('points')} pontos por entrar no sistema!`);
+  },
+
+  regFirstComment() {
+    const action = this.createAction(UserActions.FIRST_COMMENT);
+    action.save();
+
+    const globalService = this.get('diGlobal');
+    globalService.notificationSuccess('Parabéns', `Você ganhou ${action.get('points')} pontos por ser o primeiro a comentar nesta estória!`);
   },
 
   regStoryVote() {
