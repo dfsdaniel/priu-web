@@ -6,9 +6,9 @@
   {{/if}}
 
   <h2 class="text-dark"><span class="badge badge-secondary">#{{model.id}}</span> {{model.title}}</h2>
-  <textarea class="form-control" rows="5">{{model.description}}</textarea>
 
-  <div class="story-button-options mt-2" role="group">
+  <div class="story-button-options mt-4" role="group">
+    {{modal-button title="Mais detalhes" target="#detailsModal" disabled=btDetailsDisabled}}
     {{modal-button title="Critérios de aceitação" target="#acceptanceModal" disabled=btAcceptanceDisabled}}
     {{modal-button title="Wireframes" target="#wireframesModal" disabled=btWireframesDisabled}}
   </div>

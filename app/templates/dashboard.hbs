@@ -29,7 +29,7 @@
     <ul class="list-group list-group-flush">
       {{#each rankedStories as |story|}}
         <li class="list-group-item">
-          <div>
+          <div class="pr-1">
             <span class="badge badge-secondary">#{{story.id}}</span> {{#link-to "story" story.id}}{{story.title}}{{/link-to}}
           </div>
 

@@ -52,7 +52,7 @@ export default Service.extend({
     }).map((user, index) => {
       user.set('userRanking', index + 1);
       return user;
-    });;
+    });
   }),
 
   createAction(type) {
