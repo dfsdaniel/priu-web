@@ -107,6 +107,19 @@ export default Service.extend({
     action.save();
   },
 
+  regViewAcceptance(story) {
+
+      const alreadAction = this.get('allActions').filter((action) =>
+        action.get('userCreated.id') == this.get('currentUser.id') &&
+        action.get('action') == UserActions.VIEW_AC.value && action.get('context') == story.get('id')).get('firstObject');
+
+      if (!alreadAction) {
+        const newAction = this.createAction(UserActions.VIEW_AC);
+        newAction.set('context', story.get('id'));
+        newAction.save();
+      }
+  },
+
   deleteCommentOpinion(comment) {
     this.get('diStore').findAll('user-action').then((actions) => {
       const actionsForComment = actions.toArray().filter(action =>

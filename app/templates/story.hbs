@@ -5,12 +5,12 @@
     </div>
   {{/if}}
 
-  <h2 class="text-dark"><span class="badge badge-secondary">#{{model.id}}</span> {{model.title}}</h2>
+  <h3 class="text-dark"><span class="badge badge-secondary">#{{model.id}}</span> {{model.title}}</h3>
 
   <div class="story-button-options mt-4" role="group">
-    {{modal-button title="Mais detalhes" target="#detailsModal" disabled=btDetailsDisabled}}
-    {{modal-button title="Critérios de aceitação" target="#acceptanceModal" disabled=btAcceptanceDisabled}}
-    {{modal-button title="Wireframes" target="#wireframesModal" disabled=btWireframesDisabled}}
+    {{modal-button title="Critérios de aceitação" target="#acceptanceModal" story=model disabled=btAcceptanceDisabled}}
+    {{modal-button title="Wireframes" target="#wireframesModal" story=model disabled=btWireframesDisabled}}
+    {{modal-button title="Notas" target="#detailsModal" disabled=btDetailsDisabled}}
   </div>
 
   {{#if model.isVoted}}
@@ -27,7 +27,9 @@
     {{story-criteria text="Qual o risco desta estória não ser concluída até o final da sprint?" value=risk}}
   {{/if}}
 
-  <button type="button" class="btn btn-primary mt-2 mx-auto icon-button" {{action "saveVote"}}>{{priu-icon name="save"}}Salvar</button>
+  <button type="button" class="btn btn-primary mt-2 mx-auto icon-button" {{action "saveVote"}}>
+    {{priu-icon name="save"}}{{if model.isVoted 'Atualizar' 'Salvar'}}
+  </button>
 </div>
 
 <div class="col-md-3">
