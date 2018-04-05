@@ -8,9 +8,9 @@
   <h3 class="text-dark"><span class="badge badge-secondary">#{{model.id}}</span> {{model.title}}</h3>
 
   <div class="story-button-options mt-4" role="group">
-    {{modal-button title="Critérios de aceitação" target="#acceptanceModal" story=model disabled=btAcceptanceDisabled}}
-    {{modal-button title="Wireframes" target="#wireframesModal" story=model disabled=btWireframesDisabled}}
-    {{modal-button title="Notas" target="#detailsModal" disabled=btDetailsDisabled}}
+    {{modal-button title="Critérios de aceitação" target="acceptanceModal" story=model disabled=btAcceptanceDisabled}}
+    {{modal-button title="Wireframes" target="wireframesModal" story=model disabled=btWireframesDisabled}}
+    {{modal-button title="Notas" target="detailsModal" disabled=btDetailsDisabled}}
   </div>
 
   {{#if model.isVoted}}

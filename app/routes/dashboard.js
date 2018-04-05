@@ -7,5 +7,5 @@ export default Route.extend(AuthMixin, {
       sprints: this.store.findAll('sprint'),
       users: this.store.findAll('user')
     }
-	}
+  }
 });

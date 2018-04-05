@@ -18,7 +18,7 @@ export default Service.extend({
     return userActions.reduce((acc, userAction) => acc + userAction.get('points'), 0);
   },
 
-  rankedUsers: computed('allActions.[]', function() {
+  rankedUsers: computed('allUsers', 'allActions.[]', function() {
     const rankedUsers = this.get('allUsers').map((user) => {
       return new ObjectProxy({
         content: user,
@@ -65,8 +65,12 @@ export default Service.extend({
     });
   },
 
-  regLogin() {
+  regLogin(user) {
     const action = this.createAction(UserActions.LOGIN);
+    action.setProperties({
+      userCreated: user,
+      userReceived: user
+    });
     action.save();
 
     const globalService = this.get('diGlobal');

@@ -63,11 +63,13 @@ export default Route.extend({
 
   afterModel(model) {
     if (model) {
-      this.set('diGlobal.currentUser', model.user);
-      this.set('diGlobal.allUsers', model.allUsers);
-      this.set('diGlobal.allStories', model.allStories);
-      this.set('diGlobal.currentSprint', model.currentSprint);
-      this.set('diGame.allActions', model.allActions);
+      this.setProperties({
+        'diGlobal.currentUser': model.user,
+        'diGlobal.allUsers': model.allUsers,
+        'diGlobal.allStories': model.allStories,
+        'diGlobal.currentSprint': model.currentSprint,
+        'diGame.allActions': model.allActions
+      });
     }
   },
 
@@ -84,9 +86,12 @@ export default Route.extend({
       }).then(data => {
         this.set('diGlobal.currentUserId', data.currentUser.uid);
         onSuccess();
-        this.send('refreshAppRoute');
 
-        this.get('diGame').regLogin();
+        this.store.find('user', data.currentUser.uid).then((user) => {
+          this.get('diGame').regLogin(user);
+        });
+
+        this.send('refreshAppRoute');
       }).catch(error => {
         onError(error);
       });

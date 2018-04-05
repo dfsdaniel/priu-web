@@ -21,7 +21,7 @@
   </div>
 
   <div class="row story-list-header mt-4">
-    <div class="col-md"><h5>Priorização atual da sprint #SP{{currentSprint.id}}</h5></div>
+    <div class="col-md"><h5>Priorização atual das estórias da #SP{{currentSprint.id}}</h5></div>
     <div class="col-md-2"><b>Prioridade</b></div>
   </div>
 
@@ -30,7 +30,7 @@
       {{#each rankedStories as |story|}}
         <li class="list-group-item">
           <div class="pr-1">
-            <span class="badge badge-secondary">#{{story.id}}</span> {{#link-to "story" story.id}}{{story.title}}{{/link-to}}
+            <span class="badge badge-primary">#{{story.id}}</span> {{#link-to "story" story.id}}{{story.title}}{{/link-to}}
           </div>
 
           <div>
@@ -48,19 +48,15 @@
   <div class="card main-leaderboard">
     <ul class="list-group list-group-flush">
       {{#each top3 as |user index|}}
-        <li class="list-group-item ranking-{{index}}">
+        <li class="list-group-item ranking-{{index}} top-3">
           <div class="position">{{priu-icon name=(concat 'ranking-' index)}}</div>
           <div class="user-name">{{user.userRanking}}º {{user.name}} ({{user.points}})</div>
         </li>
       {{/each}}
-    </ul>
-  </div>
 
-  <div class="card leaderboard mt-2">
-    <ul class="list-group list-group-flush">
       {{#each restBoard as |user index|}}
         <li class="list-group-item">
-          <div class="user-name">{{user.userRanking}}º {{user.name}} ({{user.points}})</div>
+          <div class="user-name"><strong>{{user.userRanking}}º</strong> {{user.name}} ({{user.points}})</div>
         </li>
       {{/each}}
     </ul>

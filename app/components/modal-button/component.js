@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import $ from 'jquery';
 
 export default Component.extend({
 	tagName: '',
@@ -10,9 +11,13 @@ export default Component.extend({
     actions: {
         openModal() {
             const target = this.get('target');
-            $(target).modal('show');
+            $(`#${target}`).modal('show');
 
-            this.get('diGame').regViewAcceptance(this.get('story'));
+            if (target == 'acceptanceModal') {
+                this.get('diGame').regViewAcceptance(this.get('story'));
+            } else if (target == 'wireframesModal') {
+                this.get('diGame').regViewWireframes(this.get('story'));
+            }
         }
     }
 });
