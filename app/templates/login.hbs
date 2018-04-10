@@ -1,5 +1,5 @@
 <div class="container pt-2">
-  <form class="form-signin text-center">          
+  <form class="form-signin text-center">
     <h1 class="h3 mb-3 font-weight-normal">Bem vindo!</h1>
     {{#if errorMessage}}
       <div class="alert alert-danger mt-2 mb-2">
@@ -7,7 +7,7 @@
       </div>
     {{/if}}
     {{input placeholder="Digite seu email" type="text" class="form-control" value=email}}
-    {{input placeholder="Digite sua senha" type="password" class="form-control" value=password}}  	    
+    {{input placeholder="Digite sua senha" type="password" class="form-control" value=password}}
     <button class="btn btn-lg btn-primary btn-block {{if loginButtonDisabled 'disabled'}}" {{action "login"}}>Entrar!</button>
   </form>
 </div>

@@ -8,9 +8,11 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('dashboard', {path: '/'});
-	this.route('story', {path: '/story/:story_id'});
+  this.route('story', {path: '/story/:story_id'});
   this.route('points');
 	this.route('login');
+
+  this.route('createst');
 });
 
 export default Router;

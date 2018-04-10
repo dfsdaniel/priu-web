@@ -13,6 +13,14 @@ const Story = DS.Model.extend({
   votes: DS.hasMany('story-vote', {async: true, inverse: null}),
   comments: DS.hasMany('story-comment', {async: true, inverse: null}),
 
+  detailsHTML: computed('details', function() {
+    return this.get('details').replace(/\n/g, '<br />').htmlSafe();
+  }),
+
+  acceptanceHTML: computed('acceptance', function() {
+    return this.get('acceptance').replace(/\n/g, '<br />').htmlSafe();
+  }),
+
   isVoted: computed('votes.[]', 'diGlobal.currentUser.id', function() {
     return this.get('votes').any(vote => vote.get('user.id') == this.get('diGlobal.currentUser.id'))
   }),

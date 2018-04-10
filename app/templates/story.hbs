@@ -15,7 +15,7 @@
 
   {{#if model.isVoted}}
     <div class="already-vote-alert alert alert-warning mt-2 mb-0">
-      <strong>Atenção!</strong> Você já votou nesta estória!
+      <strong>Atenção!</strong> Você já priorizou esta estória!
     </div>
   {{/if}}
 
@@ -23,7 +23,7 @@
     {{story-criteria text="Quanto de valor esta estória trará para os usuários?" invertIcons=true value=benefit}}
     {{story-criteria text="Esta estória vai fazer muita falta se não existir nesta sprint?" value=penalty}}
   {{else}}
-    {{story-criteria text="Esta estória é muito trabalhosa, difícil ou complexa de ser feita?" value=cost}}
+    {{story-criteria text="O quanto esta estória é trabalhosa, difícil ou complexa de ser feita?" value=cost}}
     {{story-criteria text="Qual o risco desta estória não ser concluída até o final da sprint?" value=risk}}
   {{/if}}
 
