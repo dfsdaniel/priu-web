@@ -1,5 +1,11 @@
-{{priu-icon name="person"}}
+{{#if user.photo}}
+  <div class="user-photo-container">
+    <img src="/assets/images/{{user.photo}}" class="user-photo" />
+  </div>
+{{else}}
+  {{priu-icon name="person"}}
+{{/if}}
 <div class="user-name">
-    <strong>{{user.name}}</strong> <span class="badge role-{{user.role}}">{{user.role}}</span>
+  <strong>{{user.name}}</strong> <span class="badge role-{{user.role}}">{{user.role}}</span>
 </div>
 <small class="bt-signout"><a href="#" {{action "signOut"}}>Sair</a></small>

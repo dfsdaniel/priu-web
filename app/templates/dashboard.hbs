@@ -49,7 +49,15 @@
     <ul class="list-group list-group-flush">
       {{#each top3 as |user index|}}
         <li class="list-group-item ranking-{{index}} top-3">
-          <div class="position">{{priu-icon name=(concat 'ranking-' index)}}</div>
+          <div class="position">
+            {{#if user.photo}}
+              <div class="user-photo-container">
+                <img src="/assets/images/{{user.photo}}" class="user-photo" />
+              </div>
+            {{else}}
+              {{priu-icon name=(concat 'ranking-' index)}}
+            {{/if}}
+          </div>
           <div class="user-name">{{user.userRanking}}º {{user.name}} ({{user.points}})</div>
         </li>
       {{/each}}

@@ -27,6 +27,19 @@
 }
 
 .main-leaderboard {
+  .user-photo-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    overflow: hidden;
+    margin-right: auto;
+    margin-left: auto;
+
+    .user-photo {
+      width: 80px;
+    }
+  }
+
   .ranking-0 {
     background-color: $bootstrap-yellow;
   }
