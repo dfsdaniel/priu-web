@@ -27,7 +27,7 @@ const UserActions = {
   RECEIVE_COMMENT_DISLIKE: {
     label: 'Comentário mal avaliado',
     value: 'RECEIVE_COMMENT_DISLIKE',
-    points: -10
+    points: -3
   },
   VIEW_AC: {
     label: 'Consultou critérios de aceitação da estória',

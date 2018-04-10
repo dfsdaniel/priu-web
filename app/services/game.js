@@ -101,27 +101,28 @@ export default Service.extend({
     globalService.notificationSuccess('Comentário!', `Você ganhou ${action.get('points')} pontos comentar na estória!`);
   },
 
-  regViewAC() {
-    const action = this.createAction(UserActions.VIEW_AC);
-    action.save();
-  },
+  regViewWireframes(story) {
+    const alreadAction = this.get('allActions').filter((action) =>
+      action.get('userCreated.id') == this.get('currentUser.id') &&
+      action.get('action') == UserActions.VIEW_WIREFRAMES.value && action.get('context') == story.get('id')).get('firstObject');
 
-  regViewWireframes() {
-    const action = this.createAction(UserActions.VIEW_WIREFRAMES);
-    action.save();
+    if (!alreadAction) {
+      const newAction = this.createAction(UserActions.VIEW_WIREFRAMES);
+      newAction.set('context', story.get('id'));
+      newAction.save();
+    }
   },
 
   regViewAcceptance(story) {
+    const alreadAction = this.get('allActions').filter((action) =>
+      action.get('userCreated.id') == this.get('currentUser.id') &&
+      action.get('action') == UserActions.VIEW_AC.value && action.get('context') == story.get('id')).get('firstObject');
 
-      const alreadAction = this.get('allActions').filter((action) =>
-        action.get('userCreated.id') == this.get('currentUser.id') &&
-        action.get('action') == UserActions.VIEW_AC.value && action.get('context') == story.get('id')).get('firstObject');
-
-      if (!alreadAction) {
-        const newAction = this.createAction(UserActions.VIEW_AC);
-        newAction.set('context', story.get('id'));
-        newAction.save();
-      }
+    if (!alreadAction) {
+      const newAction = this.createAction(UserActions.VIEW_AC);
+      newAction.set('context', story.get('id'));
+      newAction.save();
+    }
   },
 
   deleteCommentOpinion(comment) {

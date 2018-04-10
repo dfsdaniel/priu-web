@@ -11,3 +11,31 @@
 		width: 32%;
 	}
 }
+
+.modals-container {
+    text-align: center;
+
+    #detailsModal,
+    #acceptanceModal {
+        text-align: left;
+    }
+}
+
+#wireframesModal {
+    .modal-dialog {
+        max-width: 100%;
+        width: auto !important;
+        display: inline-block;
+    }
+
+    .wireframe-list {
+        display: flex;
+        padding-right: 25px;
+
+        .wireframe-img {
+            height: 500px;
+            border: 1px solid black;
+            margin-left: 10px;
+        }
+    }
+}

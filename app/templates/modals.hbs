@@ -45,8 +45,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        {{model.wireframes}}
+      <div class="modal-body text-center wireframe-list">
+        {{#each model.wireframesList as |wireframe|}}
+          <img src="/assets/images/{{wireframe}}" class="wireframe-img" />
+        {{/each}}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>

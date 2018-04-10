@@ -21,6 +21,10 @@ const Story = DS.Model.extend({
     return this.get('acceptance').replace(/\n/g, '<br />').htmlSafe();
   }),
 
+  wireframesList: computed('wireframes', function() {
+    return this.get('wireframes') ? this.get('wireframes').split(';') : '';
+  }),
+
   isVoted: computed('votes.[]', 'diGlobal.currentUser.id', function() {
     return this.get('votes').any(vote => vote.get('user.id') == this.get('diGlobal.currentUser.id'))
   }),
