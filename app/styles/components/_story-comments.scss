@@ -1,4 +1,6 @@
 .story-comments {
+	font-size: 0.8rem;
+
 	.card {
 		height: 400px;
 		overflow: scroll;
@@ -9,7 +11,20 @@
 		margin-bottom: 10px;
 		padding-bottom: 10px;
 
+		.user-photo-container {
+	    width: 30px;
+	    height: 30px;
+	    border-radius: 30px;
+	    overflow: hidden;
+	    margin-right: 3px;
+
+	    .user-photo {
+	      width: 30px;
+	    }
+	  }
+
 		.content-container {
+			margin-top: 5px;
 			margin-left: -10px;
 		}
 

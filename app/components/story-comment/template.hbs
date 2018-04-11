@@ -1,5 +1,11 @@
 <div class="col-md-2">
-  {{priu-icon name="user-avatar"}}
+  {{#if comment.user.photo}}
+    <div class="user-photo-container">
+      <img src="/assets/images/{{comment.user.photo}}" class="user-photo" />
+    </div>
+  {{else}}
+    {{priu-icon name="user-avatar"}}
+  {{/if}}
 </div>
 <div class="col-md content-container">
   <div class="user-name">{{comment.user.name}} <span class="badge role-{{comment.user.role}}">{{comment.user.role}}</span></div>
