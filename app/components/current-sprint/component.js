@@ -6,7 +6,7 @@ export default Component.extend({
   classNames: 'alert alert-info mt-1',
   currentSprint: null,
 
-  daysLeft: computed('currentSprint', function() {
+  daysLeft: computed('currentSprint.startDate', function() {
     const sprint = this.get('currentSprint');
     return moment(sprint.get('startDate')).diff(moment(), 'days') + 1;
   })

@@ -31,7 +31,10 @@ const Story = DS.Model.extend({
 
   averageVotes: computed('votes.@each.{benefit,penalty,risk,cost}', function() {
     const allVotes = this.get('votes');
-    let qtdVotes = allVotes.get('length') / 2;
+
+    let qtdVotesPO = allVotes.filter((vote) => vote.get('user.role') == UserRoles.PO).get('length');
+    let qtdVotesDEV = allVotes.filter((vote) => vote.get('user.role') == UserRoles.DEV).get('length');
+
     const storyVotes = {
       benefit: 0,
       penalty: 0,
@@ -49,13 +52,14 @@ const Story = DS.Model.extend({
     });
 
     // Ajuste para quando não houver nenhum voto ainda para a estória
-    qtdVotes = qtdVotes == 0 ? 1 : qtdVotes;
+    qtdVotesPO = qtdVotesPO == 0 ? 1 : qtdVotesPO;
+    qtdVotesDEV = qtdVotesDEV == 0 ? 1 : qtdVotesDEV;
 
     return {
-      benefit: storyVotes['benefit'] / qtdVotes,
-      penalty: storyVotes['penalty'] / qtdVotes,
-      risk: storyVotes['risk'] / qtdVotes,
-      cost: storyVotes['cost'] / qtdVotes
+      benefit: storyVotes['benefit'] / qtdVotesPO,
+      penalty: storyVotes['penalty'] / qtdVotesPO,
+      risk: storyVotes['risk'] / qtdVotesDEV,
+      cost: storyVotes['cost'] / qtdVotesDEV
     };
   }),
 });

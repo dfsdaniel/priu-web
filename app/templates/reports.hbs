@@ -1,0 +1,49 @@
+<div class="col-md">
+  <h2>RELATÓRIOS</h2>
+
+  <h3>Estórias</h3>
+
+  {{#each storiesWithVotes as |story|}}
+    <p><strong><span class="badge badge-secondary">#{{story.id}}</span> {{story.title}}</strong></p>
+
+    <div class="average-vote alert alert-secondary">
+      <ul>
+        <li><strong>MÉDIA: </strong></li>
+        <li>Benefit: {{story.averageVotes.benefit}}</li>
+        <li>Penalty: {{story.averageVotes.penalty}}</li>
+        <li>Cost: {{story.averageVotes.cost}}</li>
+        <li>Risk: {{story.averageVotes.risk}}</li>
+      </ul>
+    </div>
+
+    <div class="report-votes mb-3">
+      {{#each story.votesByPO as |vote|}}
+        <div class="vote">
+          <strong>{{vote.user.name}}</strong> <span class="badge role-{{vote.user.role}}">{{vote.user.role}}</span>
+          <ul>
+            <li>Benefit: {{vote.benefit}}</li>
+            <li>Penalty: {{vote.penalty}}</li>
+            <li>Cost: {{vote.cost}}</li>
+            <li>Risk: {{vote.risk}}</li>
+          </ul>
+        </div>
+      {{/each}}
+    </div>
+
+    <div class="report-votes">
+      {{#each story.votesByDEV as |vote|}}
+        <div class="vote">
+          <strong>{{vote.user.name}}</strong> <span class="badge role-{{vote.user.role}}">{{vote.user.role}}</span>
+          <ul>
+            <li>Benefit: {{vote.benefit}}</li>
+            <li>Penalty: {{vote.penalty}}</li>
+            <li>Cost: {{vote.cost}}</li>
+            <li>Risk: {{vote.risk}}</li>
+          </ul>
+        </div>
+      {{/each}}
+    </div>
+
+    <br />
+  {{/each}}
+</div>

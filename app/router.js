@@ -13,6 +13,7 @@ Router.map(function() {
 	this.route('login');
 
   this.route('createst');
+  this.route('reports');
 });
 
 export default Router;

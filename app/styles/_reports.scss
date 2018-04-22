@@ -1,0 +1,30 @@
+.average-vote {
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: flex;
+        li {
+            margin-right: 20px;
+        }
+    }
+}
+
+.report-votes {
+    display: flex;
+    justify-content: space-between;
+
+    .vote {
+        position: relative;
+        width: 25%;
+        border: 1px dashed gray;
+        padding: 10px;
+        margin-left: 10px;
+
+        .badge {
+            position: absolute;
+            right: 10px;
+            top: -10px;
+        }
+    }
+}
