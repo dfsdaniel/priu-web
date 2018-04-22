@@ -10,6 +10,8 @@ const User = DS.Model.extend({
 
   isDEV: computed.equal('role', UserRoles.DEV),
   isPO: computed.equal('role', UserRoles.PO),
+
+  isPM: DS.attr('boolean', {defaultValue: false})
 });
 
 export default User;

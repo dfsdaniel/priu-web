@@ -16,6 +16,11 @@
           <li class="nav-item ">
             <a class="nav-link" href="https://docs.google.com/presentation/d/1awsRUOTosOOrPh5rzf7y4mHM9OXcD3Dup1VIuTlbXak/edit?usp=sharing" target="_blank">Instruções</a>
           </li>
+          {{#if model.user.isPM}}
+            <li class="nav-item">
+              {{#link-to "reports" class="nav-link"}}Relatórios{{/link-to}}
+            </li>
+          {{/if}}
         </ul>
       {{/if}}
 
