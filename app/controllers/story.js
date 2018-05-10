@@ -87,7 +87,9 @@ export default Controller.extend({
 
 		saveComment(commentText) {
 			const story = this.get('model');
-			const isFirstComment = isEmpty(story.get('comments'));
+			const currentUser = this.get('currentUser');
+			const commentsByRole = story.get('comments').filter((comment) => comment.get('user.role') == currentUser.get('role'));
+			const isFirstComment = isEmpty(commentsByRole);
 
 			const newComment = this.store.createRecord('story-comment', {
 				user: this.get('currentUser'),

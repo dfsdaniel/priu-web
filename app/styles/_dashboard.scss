@@ -68,3 +68,32 @@
     }
   }
 }
+
+.all-ranking-button {
+  a {
+    font-size: 0.8rem;
+  }
+}
+
+#rankingModal,
+#commentersModal {
+  ul {
+    padding: 0;
+  }
+}
+
+#firstLoginModal {
+  .user-photo-container {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    overflow: hidden;
+    margin-right: auto;
+    margin-left: auto;
+
+    .user-photo {
+      width: 100px;
+    }
+  }
+}
+

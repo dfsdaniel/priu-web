@@ -12,7 +12,7 @@ const UserActions = {
   ADD_COMMENT: {
     label: 'Comentou na estória',
     value: 'ADD_COMMENT',
-    points: 20
+    points: 15
   },
   ADD_COMMENT_OPINION: {
     label: 'Avaliou comentário da estória',
@@ -27,7 +27,7 @@ const UserActions = {
   RECEIVE_COMMENT_DISLIKE: {
     label: 'Comentário mal avaliado',
     value: 'RECEIVE_COMMENT_DISLIKE',
-    points: -3
+    points: -5
   },
   VIEW_AC: {
     label: 'Consultou critérios de aceitação da estória',
@@ -42,12 +42,12 @@ const UserActions = {
   LOGIN: {
     label: 'Efetou login no sistema',
     value: 'LOGIN',
-    points: 2
+    points: 1
   },
   FIRST_COMMENT: {
     label: 'Primeiro a comentar na estória',
     value: 'FIRST_COMMENT',
-    points: 25
+    points: 20
   }
 };
 

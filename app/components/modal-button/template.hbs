@@ -1,9 +1,13 @@
-{{#if disabled}}
-	<button type="button" class="btn btn-secondary disabled">
-		{{title}}
-	</button>
+{{#if isLink}}
+    <a href="#" {{action "openModal"}}>{{title}}</a>
 {{else}}
-	<button type="button" class="btn btn-secondary" {{action "openModal"}}>
-		{{title}}
-	</button>
+    {{#if disabled}}
+    	<button type="button" class="btn btn-secondary disabled">
+    		{{title}}
+    	</button>
+    {{else}}
+    	<button type="button" class="btn btn-secondary" {{action "openModal"}}>
+    		{{title}}
+    	</button>
+    {{/if}}
 {{/if}}

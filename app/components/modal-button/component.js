@@ -7,6 +7,7 @@ export default Component.extend({
 	target: '',
 	title: '',
     story: null,
+    isLink: false,
 
     actions: {
         openModal() {

@@ -43,7 +43,7 @@
 </div>
 
 <div class="col-md-3">
-  <h5 class="leaderboard-title">{{priu-icon name="trophy" width="31" height="31" classNames="p0"}} Ranking geral</h5>
+  <h5 class="leaderboard-title">{{priu-icon name="trophy" width="31" height="31" classNames="p0"}} Ranking Top 5</h5>
 
   <div class="card main-leaderboard">
     <ul class="list-group list-group-flush">
@@ -69,16 +69,26 @@
       {{/each}}
     </ul>
   </div>
+  <div class="all-ranking-button text-center">
+    {{modal-button title="ranking completo" target="rankingModal" isLink=true}}
+  </div>
 
   <h5 class="section-title mt-4">{{priu-icon name="comments"}} Quem mais comenta!</h5>
 
   <div class="card top-commenters">
     <ul class="list-group list-group-flush">
-      {{#each topCommenters as |user index|}}
+      {{#each top5Commenters as |user index|}}
         <li class="list-group-item">
             <div class="user-name"><strong>{{user.userRanking}}º</strong> {{user.name}} ({{user.qtd}})</div>
         </li>
       {{/each}}
     </ul>
   </div>
+  <div class="all-ranking-button text-center">
+    {{modal-button title="ranking completo" target="commentersModal" isLink=true}}
+  </div>
+</div>
+
+<div class="modals-container">
+  {{partial "modals-dashboard"}}
 </div>

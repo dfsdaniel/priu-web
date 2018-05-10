@@ -3,14 +3,32 @@ import ObjectProxy from '@ember/object/proxy'
 import { alias } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import { StoryWeights } from 'priu-web/utils/constants';
+import { UserRoles } from 'priu-web/utils/constants';
+import { schedule } from '@ember/runloop';
+import $ from 'jquery';
 
 export default Controller.extend({
+
+  currentUser: alias('diGlobal.currentUser'),
   allStories: alias('diGlobal.allStories'),
   currentSprint: alias('diGlobal.currentSprint'),
 
   allActions: alias('diGame.allActions'),
   rankedUsers: alias('diGame.rankedUsers'),
   topCommenters: alias('diGame.topCommenters'),
+
+  showFirstLoginModal() {
+    const currentUser = this.get('currentUser');
+
+    if (currentUser.get('isFirstLogin')) {
+      schedule('afterRender', this, function() {
+        $('#firstLoginModal').modal('show');
+      });
+
+      currentUser.set('isFirstLogin', false);
+      currentUser.save();
+    }
+  },
 
   getPriority() {
     const allStories = this.get('allStories');
@@ -63,8 +81,18 @@ export default Controller.extend({
     return this.get('rankedUsers').slice(0, 3);
   }),
 
+  top5Commenters: computed('topCommenters', function() {
+    return this.get('topCommenters').slice(0, 5);
+  }),
+
   restBoard: computed('rankedUsers', function() {
-    return this.get('rankedUsers').slice(3, 6);
+    return this.get('rankedUsers').slice(3, 5);
+  }),
+
+  currentUserRole: computed('currentUser', function() {
+    const role = this.get('currentUser.role');
+
+    return (role == UserRoles.DEV) ? 'DESENVOLVEDOR' : 'PRODUCT OWNER';
   }),
 
   actions: {

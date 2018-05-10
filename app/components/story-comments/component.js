@@ -7,9 +7,13 @@ export default Component.extend({
   classNames: 'story-comments',
 
   story: null,
+  currentUser: null,
 
   comments: computed('story.comments.@each.opinions', function() {
-    return _.sortBy(this.get('story.comments').toArray(), comment => {
+    const currentUser = this.get('currentUser');
+    const commentsByRole = this.get('story.comments').filter((comment) => comment.get('user.role') == currentUser.get('role'));
+
+    return _.sortBy(commentsByRole.toArray(), comment => {
       return new moment(comment.get('dateTime'));
     }).reverse();
   }),

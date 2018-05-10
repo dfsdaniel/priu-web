@@ -1,0 +1,75 @@
+<div class="modal fade" id="rankingModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ranking Completo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul>
+          {{#each rankedUsers as |user index|}}
+            <li class="list-group-item">
+              <div class="user-name"><strong>{{user.userRanking}}º</strong> {{user.name}} ({{user.points}})</div>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="commentersModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Quem mais comenta!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul>
+          {{#each topCommenters as |user index|}}
+            <li class="list-group-item">
+              <div class="user-name"><strong>{{user.userRanking}}º</strong> {{user.name}} ({{user.qtd}})</div>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="firstLoginModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Bem vindo ao PRIUS!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="user-photo-container">
+          <img src="/assets/images/{{currentUser.photo}}" class="user-photo" />
+        </div>
+        Bem vindo(a) <strong>{{currentUser.name}}</strong>! <br /><br />
+
+        Você participará da priorização das estórias atuando<br />com o papel de <span class="badge role-{{currentUser.role}}">{{currentUserRole}}</span>.<br /><br />
+
+        Obrigado pela participação!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
