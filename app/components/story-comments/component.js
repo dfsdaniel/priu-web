@@ -6,6 +6,8 @@ import _ from 'lodash';
 export default Component.extend({
   classNames: 'story-comments',
 
+  isGamified: true,
+
   story: null,
   currentUser: null,
 

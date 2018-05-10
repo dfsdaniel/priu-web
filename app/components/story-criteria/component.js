@@ -6,7 +6,11 @@ export default Component.extend({
     classNames: 'story-criteria card mt-2',
 
     text: '',
+    subText: '',
+
     value: 1,
+
+    isGamified: true,
 
     invertIcons: false,
 

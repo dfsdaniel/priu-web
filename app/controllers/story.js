@@ -3,9 +3,11 @@ import { alias } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import moment from 'moment';
 import { StoryCommentsConstants } from 'priu-web/utils/constants';
-import { isEmpty } from '@ember/utils'
+import { isEmpty } from '@ember/utils';
+import config from '../config/environment';
 
 export default Controller.extend({
+	isGamified: config.isGamified,
 
 	currentUser: alias('diGlobal.currentUser'),
 	currentSprint: alias('diGlobal.currentSprint'),

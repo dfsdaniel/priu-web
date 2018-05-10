@@ -6,8 +6,10 @@ import { StoryWeights } from 'priu-web/utils/constants';
 import { UserRoles } from 'priu-web/utils/constants';
 import { schedule } from '@ember/runloop';
 import $ from 'jquery';
+import config from '../config/environment';
 
 export default Controller.extend({
+  isGamified: config.isGamified,
 
   currentUser: alias('diGlobal.currentUser'),
   allStories: alias('diGlobal.allStories'),

@@ -1,8 +1,10 @@
 import Controller from '@ember/controller';
 import { alias } from '@ember/object/computed';
 import { computed } from '@ember/object';
+import config from '../config/environment';
 
 export default Controller.extend({
+  isGamified: config.isGamified,
 
   currentUser: alias('diGlobal.currentUser'),
   allStories: alias('diGlobal.currentUser.allStories'),

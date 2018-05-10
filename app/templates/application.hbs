@@ -10,12 +10,20 @@
           <li class="nav-item">
             {{#link-to "dashboard" class="nav-link"}}Visão Geral{{/link-to}}
           </li>
-          <li class="nav-item">
-            {{#link-to "points" class="nav-link"}}Extrato de pontos{{/link-to}}
-          </li>
+          {{#if isGamified}}
+            <li class="nav-item">
+              {{#link-to "points" class="nav-link"}}Extrato de pontos{{/link-to}}
+            </li>
+          {{/if}}
+          {{#if isGamified}}
           <li class="nav-item ">
             <a class="nav-link" href="https://docs.google.com/presentation/d/1awsRUOTosOOrPh5rzf7y4mHM9OXcD3Dup1VIuTlbXak/edit?usp=sharing" target="_blank">Instruções</a>
           </li>
+          {{else}}
+            <li class="nav-item ">
+              <a class="nav-link" href="https://docs.google.com/presentation/d/1qpRTPQV9CsHpeEbbXhENLeaWgSW8sJWSNsTdksD-2ac/edit?usp=sharing" target="_blank">Instruções</a>
+            </li>
+          {{/if}}
           {{#if model.user.isPM}}
             <li class="nav-item">
               {{#link-to "reports" class="nav-link"}}Relatórios{{/link-to}}
@@ -37,10 +45,15 @@
   {{#if (and userSession.isAuthenticated model)}}
     <div class="row">
       <div class="col-md-2 text-center">
-        {{user-ranking ranking=currentUserRanking points=currentUserPoints}}
+        {{#if isGamified}}
+          {{user-ranking ranking=currentUserRanking points=currentUserPoints}}
+        {{/if}}
         {{current-sprint currentSprint=currentSprint}}
         {{stories-boxes stories=model.allStories currentUser=currentUser}}
-        {{stories-progress stories=model.allStories}}
+
+        {{#if isGamified}}
+          {{stories-progress stories=model.allStories}}
+        {{/if}}
       </div>
       {{outlet}}
     </div>

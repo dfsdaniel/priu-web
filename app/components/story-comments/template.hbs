@@ -4,6 +4,7 @@
     {{#if comments}}
       {{#each comments as |cm index|}}
         {{story-comment
+          isGamified=isGamified
           comment=cm
           classNames=(if (not-eq index commentsLastIndex) 'border-bottom')
           addCommentLike=(action addCommentLike)

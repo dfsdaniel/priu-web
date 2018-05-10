@@ -20,11 +20,28 @@
   {{/if}}
 
   {{#if currentUser.isPO}}
-    {{story-criteria text="Quanto de valor esta estória trará para os usuários?" invertIcons=true value=benefit}}
-    {{story-criteria text="Esta estória vai fazer muita falta se não existir nesta sprint?" value=penalty}}
+    {{story-criteria
+      text="Quanto de valor esta estória trará para os usuários?"
+      subText="(1 - pouquissímo valor | muitíssimo valor - 9)"
+      invertIcons=true
+      value=benefit
+      isGamified=isGamified}}
+    {{story-criteria
+      text="Quanto prejuízo esta estória trará se não estiver pronta nesta sprint?"
+      subText="(1 - quase nenhum prejuízo | muitíssimo prejuízo - 9)"
+      value=penalty
+      isGamified=isGamified}}
   {{else}}
-    {{story-criteria text="O quanto esta estória é trabalhosa, difícil ou complexa de ser feita?" value=cost}}
-    {{story-criteria text="Qual o risco desta estória não ser concluída até o final da sprint?" value=risk}}
+    {{story-criteria
+      text="O quanto esta estória é trabalhosa, difícil ou complexa de ser feita?"
+      subText="(1 - pouquissíma trabalhosa | extremamente trabalhosa - 9)"
+      value=cost
+      isGamified=isGamified}}
+    {{story-criteria
+      text="Qual o risco desta estória não ser concluída até o final da sprint?"
+      subText="(1 - risco baixíssimo | risco altíssimo - 9)"
+      value=risk
+      isGamified=isGamified}}
   {{/if}}
 
   <button type="button" class="btn btn-primary mt-2 mx-auto icon-button" {{action "saveVote"}}>
@@ -34,6 +51,7 @@
 
 <div class="col-md-3">
   {{story-comments story=model
+    isGamified=isGamified
     currentUser=currentUser
     saveComment=(action "saveComment")
     addCommentLike=(action "addCommentLike")

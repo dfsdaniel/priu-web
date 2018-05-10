@@ -4,9 +4,10 @@ import { computed } from '@ember/object';
 import { alias } from '@ember/object/computed';
 import ObjectProxy from '@ember/object/proxy'
 import moment from 'moment';
+import config from '../config/environment';
 
 export default Service.extend({
-  isActive: true,
+  isGamified: config.isGamified,
 
   allActions: null,
 
@@ -66,6 +67,8 @@ export default Service.extend({
   },
 
   regLogin(user) {
+    if (!this.get('isGamified')) return;
+
     const action = this.createAction(UserActions.LOGIN);
     action.setProperties({
       userCreated: user,
@@ -78,6 +81,8 @@ export default Service.extend({
   },
 
   regFirstComment() {
+    if (!this.get('isGamified')) return;
+
     const action = this.createAction(UserActions.FIRST_COMMENT);
     action.save();
 
@@ -86,6 +91,8 @@ export default Service.extend({
   },
 
   regStoryVote() {
+    if (!this.get('isGamified')) return;
+
     const action = this.createAction(UserActions.STORY_VOTE);
     action.save();
 
@@ -94,6 +101,8 @@ export default Service.extend({
   },
 
   regAddComment() {
+    if (!this.get('isGamified')) return;
+
     const action = this.createAction(UserActions.ADD_COMMENT);
     action.save();
 
@@ -102,6 +111,8 @@ export default Service.extend({
   },
 
   regViewWireframes(story) {
+    if (!this.get('isGamified')) return;
+
     const alreadAction = this.get('allActions').filter((action) =>
       action.get('userCreated.id') == this.get('currentUser.id') &&
       action.get('action') == UserActions.VIEW_WIREFRAMES.value && action.get('context') == story.get('id')).get('firstObject');
@@ -114,6 +125,8 @@ export default Service.extend({
   },
 
   regViewAcceptance(story) {
+    if (!this.get('isGamified')) return;
+
     const alreadAction = this.get('allActions').filter((action) =>
       action.get('userCreated.id') == this.get('currentUser.id') &&
       action.get('action') == UserActions.VIEW_AC.value && action.get('context') == story.get('id')).get('firstObject');
@@ -126,6 +139,8 @@ export default Service.extend({
   },
 
   deleteCommentOpinion(comment) {
+    if (!this.get('isGamified')) return;
+
     this.get('diStore').findAll('user-action').then((actions) => {
       const actionsForComment = actions.toArray().filter(action =>
         action.get('context') == comment.get('id') && action.get('userCreated.id') == this.get('currentUser.id'));
@@ -148,6 +163,8 @@ export default Service.extend({
   },
 
   regCommentOpinion(comment, opinion) {
+    if (!this.get('isGamified')) return;
+
     let actionReceived = null;
 
     if (opinion.get('type') == StoryCommentsConstants.OPINION_TYPES.LIKE) {
