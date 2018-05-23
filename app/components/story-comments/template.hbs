@@ -11,7 +11,7 @@
           addCommentDislike=(action addCommentDislike)}}
       {{/each}}
     {{else}}
-      Seja o primeiro a comentar e ganhe pontos!
+      {{#if isGamified}}Seja o primeiro a comentar e ganhe pontos!{{else}}Sem comentários ainda...{{/if}}
     {{/if}}
   </div>
 </div>

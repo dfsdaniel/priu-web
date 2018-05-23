@@ -44,9 +44,15 @@
       isGamified=isGamified}}
   {{/if}}
 
-  <button type="button" class="btn btn-primary mt-2 mx-auto icon-button" {{action "saveVote"}}>
-    {{priu-icon name="save"}}{{if model.isVoted 'Atualizar' 'Salvar'}}
-  </button>
+  {{#if isSaving}}
+    <button type="button" class="btn btn-secondary mt-2 mx-auto icon-button">
+      {{priu-icon name="save"}}Salvando...
+    </button>
+  {{else}}
+    <button type="button" class="btn btn-primary mt-2 mx-auto icon-button" {{action "saveVote"}}>
+      {{priu-icon name="save"}}{{if model.isVoted 'Atualizar' 'Salvar'}}
+    </button>
+  {{/if}}
 </div>
 
 <div class="col-md-3">

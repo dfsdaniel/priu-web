@@ -42,4 +42,28 @@
 
     <br />
   {{/each}}
+
+  <table class="table table-striped">
+    <thead  class="thead-dark">
+      <tr>
+        <th>Usuário (criou)</th>
+        <th>Usuário (recebeu)</th>
+        <th>Ação</th>
+        <th>Contexto</th>
+        <th>Data/Hora</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each actions as |action|}}
+        <tr>
+          <td>{{action.userCreated.name}}</td>
+          <td>{{action.userReceived.name}}</td>
+          <td>{{action.actionFormatted}}</td>
+          <td>{{action.context}}</td>
+          <td>{{action.dateTimeFormatted}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
 </div>

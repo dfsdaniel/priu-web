@@ -28,9 +28,7 @@ export default Service.extend({
       });
     });
 
-    return rankedUsers.sort((userA, userB) => {
-      return userA.points < userB.points;
-    }).map((user, index) => {
+    return rankedUsers.sortBy('points').reverse().map((user, index) => {
       user.set('userRanking', index + 1);
       return user;
     });
@@ -67,8 +65,6 @@ export default Service.extend({
   },
 
   regLogin(user) {
-    if (!this.get('isGamified')) return;
-
     const action = this.createAction(UserActions.LOGIN);
     action.setProperties({
       userCreated: user,
@@ -76,43 +72,40 @@ export default Service.extend({
     });
     action.save();
 
+    if (!this.get('isGamified')) return;
     const globalService = this.get('diGlobal');
     globalService.notificationSuccess('Login', `Você ganhou ${action.get('points')} pontos por entrar no sistema!`);
   },
 
   regFirstComment() {
-    if (!this.get('isGamified')) return;
-
     const action = this.createAction(UserActions.FIRST_COMMENT);
     action.save();
 
+    if (!this.get('isGamified')) return;
     const globalService = this.get('diGlobal');
     globalService.notificationSuccess('Parabéns', `Você ganhou ${action.get('points')} pontos por ser o primeiro a comentar nesta estória!`);
   },
 
-  regStoryVote() {
-    if (!this.get('isGamified')) return;
-
+  regStoryVote(story) {
     const action = this.createAction(UserActions.STORY_VOTE);
+    action.set('context', story.get('id'));
     action.save();
 
+    if (!this.get('isGamified')) return;
     const globalService = this.get('diGlobal');
     globalService.notificationSuccess('Parabéns!', `Você ganhou ${action.get('points')} pontos por sua opinião na estória!`);
   },
 
   regAddComment() {
-    if (!this.get('isGamified')) return;
-
     const action = this.createAction(UserActions.ADD_COMMENT);
     action.save();
 
+    if (!this.get('isGamified')) return;
     const globalService = this.get('diGlobal');
     globalService.notificationSuccess('Comentário!', `Você ganhou ${action.get('points')} pontos comentar na estória!`);
   },
 
   regViewWireframes(story) {
-    if (!this.get('isGamified')) return;
-
     const alreadAction = this.get('allActions').filter((action) =>
       action.get('userCreated.id') == this.get('currentUser.id') &&
       action.get('action') == UserActions.VIEW_WIREFRAMES.value && action.get('context') == story.get('id')).get('firstObject');
@@ -125,8 +118,6 @@ export default Service.extend({
   },
 
   regViewAcceptance(story) {
-    if (!this.get('isGamified')) return;
-
     const alreadAction = this.get('allActions').filter((action) =>
       action.get('userCreated.id') == this.get('currentUser.id') &&
       action.get('action') == UserActions.VIEW_AC.value && action.get('context') == story.get('id')).get('firstObject');
@@ -139,12 +130,9 @@ export default Service.extend({
   },
 
   deleteCommentOpinion(comment) {
-    if (!this.get('isGamified')) return;
-
     this.get('diStore').findAll('user-action').then((actions) => {
       const actionsForComment = actions.toArray().filter(action =>
         action.get('context') == comment.get('id') && action.get('userCreated.id') == this.get('currentUser.id'));
-
 
       let i = 0;
 
@@ -163,8 +151,6 @@ export default Service.extend({
   },
 
   regCommentOpinion(comment, opinion) {
-    if (!this.get('isGamified')) return;
-
     let actionReceived = null;
 
     if (opinion.get('type') == StoryCommentsConstants.OPINION_TYPES.LIKE) {
@@ -201,8 +187,10 @@ export default Service.extend({
         action.set('context', comment.get('id'));
         action.save();
 
-        const globalService = this.get('diGlobal');
-        globalService.notificationSuccess('Obrigado!', `Você ganhou ${action.get('points')} pontos por avaliar este comentário!`);
+        if (this.get('isGamified')) {
+          const globalService = this.get('diGlobal');
+          globalService.notificationSuccess('Obrigado!', `Você ganhou ${action.get('points')} pontos por avaliar este comentário!`);
+        }
       }
     });
   }

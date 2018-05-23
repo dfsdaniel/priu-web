@@ -26,6 +26,8 @@ export default Controller.extend({
 	btAcceptanceDisabled: computed.empty('model.acceptance'),
 	btWireframesDisabled: computed.empty('model.wireframes'),
 
+	isSaving: false,
+
 	addCommentOpinion(comment, type) {
 		if (comment.get('canSendOpinion')) {
 			const currentUserOpinion = comment.get('currentUserOpinion');
@@ -69,6 +71,8 @@ export default Controller.extend({
 			const story = this.get('model');
 			const userVote = this.get('userVote');
 
+			this.set('isSaving', true);
+
 			if (userVote.get('isNew')) {
 				userVote.setProperties({
 					story,
@@ -78,12 +82,15 @@ export default Controller.extend({
 
 				userVote.save().then(userVote => {
 					story.get('votes').pushObject(userVote);
-					story.save();
-
-					this.get('diGame').regStoryVote();
+					story.save().then(() => {
+						this.set('isSaving', false);
+						this.get('diGame').regStoryVote(story);
+					});
 				});
 			} else {
-				userVote.save();
+				userVote.save().then(() => {
+					this.set('isSaving', false);
+				});
 			}
 		},
 

@@ -2,7 +2,9 @@ import Controller from '@ember/controller';
 import { alias } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import { UserRoles } from 'priu-web/utils/constants';
-import ObjectProxy from '@ember/object/proxy'
+import ObjectProxy from '@ember/object/proxy';
+import { UserActions } from 'priu-web/utils/constants';
+import moment from 'moment';
 
 export default Controller.extend({
   allStories: alias('diGlobal.allStories'),
@@ -24,4 +26,15 @@ export default Controller.extend({
       });
     });
   }),
+
+  actions: computed('allActions', function() {
+    return this.get('allActions').filter(action => action.get('userReceived.name') == 'Aryell Menezes')
+      .map((userAction) => {
+        return new ObjectProxy({
+          content: userAction,
+          actionFormatted: UserActions[userAction.get('action')].label,
+          dateTimeFormatted: moment(userAction.get('dateTime')).calendar()
+        });
+      });
+  })
 });

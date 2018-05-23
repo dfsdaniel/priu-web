@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    isGamified: false,
+    isGamified: true,
 
     firebase: {
       databaseURL: 'https://priu-web.firebaseio.com',
